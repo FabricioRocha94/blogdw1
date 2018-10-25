@@ -1,3 +1,7 @@
 body{
-    background-color: rgb(221, 217, 217);
+    background-color: rgb(221, 217, 217);      
+}
+
+.navbar-border{
+    border-radius: 6px;
 }
