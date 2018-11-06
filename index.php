@@ -63,19 +63,10 @@
                 <div class="row">
                     <div class="col">
                         <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
-                            <div class="card-header bg-light">
-                                Título
-                            </div>
-                            <div class="card-body bg-light">
-                                <ul class="list-unstyled text-white text-muted">
-                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRx6wDrAm4rQSkIND9RddUxXBL255memMA4UMxE-9ljM6KgaWrp"
-                                        alt="">
-                                        <?php
-                                        require_once 'postagem.php';
-                                        posts();
-                                        ?>
-                                </ul>
-                            </div>
+                            <?php
+                            require_once 'postagem.php';
+                            posts();
+                            ?>
                         </div>
                     </div>
                 </div>

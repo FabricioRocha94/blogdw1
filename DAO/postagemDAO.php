@@ -4,7 +4,7 @@ require "dataBase.php";
 function inserir($post)
 {
     $conexao = conectar();
-    $insert = executar($conexao, "INSERT INTO POSTAGEM (TEXTO, AUTOR) VALUES ('" . $post->getTexto . "', " . $post->getAutor . ")");
+    $insert = executar($conexao, "INSERT INTO POSTAGEM (TITULO, TEXTO, AUTOR) VALUES ('" . $post - getTitulo . "', '" . $post->getTexto . "', " . $post->getAutor . ")");
     $desconectar = desconectar($conexao);
 }
 
