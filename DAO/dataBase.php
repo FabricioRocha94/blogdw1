@@ -4,10 +4,10 @@ if (!defined("CONST_BASE.PHP")) {
 	define("CONST_BASE.PHP", "BASE.PHP importado");
 
 // Constantes do servidor e do banco de dados
-	define('S_SERVIDOR', '10.115.71.16');
-	define('BD_USUARIO', 'dw1');
-	define('BD_SENHA', 'dw1');
-	define('BD_BASEDEDADOS', 'dw1');
+	define('S_SERVIDOR', 'localhost');
+	define('BD_USUARIO', 'root');
+	define('BD_SENHA', '');
+	define('BD_BASEDEDADOS', 'BLOGDW1');
 
 //$conexao_sgbd = mysqli_connect(S_SERVIDOR, BD_USUARIO, BD_SENHA);
 //$conexao_base = mysqli_select_db($conexao_sgbd, BD_BASEDEDADOS);

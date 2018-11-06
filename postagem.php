@@ -1,11 +1,8 @@
 <?php
 
 require_once 'Model/post.php';
+require_once 'DAO/postagemDAO.php';
 
-$Post = new Post();
-
-$id = 1;
-$Post->setId($id);
-echo $Post->getId();
+listarPosts();
 
 ?>
