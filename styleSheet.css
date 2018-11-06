@@ -1,7 +1,17 @@
+html, body{
+ font-size: 10px;
+}
+
 body{
-    background-color: rgb(221, 217, 217);      
+    background-color: rgb(221, 217, 217);    
+    font-size: 2rem;  
 }
 
 .navbar-border{
     border-radius: 6px;
+}
+
+.sideBarPropaganda{    
+    border-bottom-left-radius: 6px;
+    border-top-left-radius: 6px;
 }
