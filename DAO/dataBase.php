@@ -1,66 +1,50 @@
 <?php
-// Para verificar se o arquivo j� foi importado
-if (!defined("CONST_BASE.PHP")) {
-	define("CONST_BASE.PHP", "BASE.PHP importado");
 
 // Constantes do servidor e do banco de dados
-	define('S_SERVIDOR', 'localhost');
-	define('BD_USUARIO', 'root');
-	define('BD_SENHA', '');
-	define('BD_BASEDEDADOS', 'BLOGDW1');
+define('S_SERVIDOR', 'localhost');
+define('BD_USUARIO', 'root');
+define('BD_SENHA', '');
+define('BD_BASEDEDADOS', 'BLOGDW1');
 
-//$conexao_sgbd = mysqli_connect(S_SERVIDOR, BD_USUARIO, BD_SENHA);
-//$conexao_base = mysqli_select_db($conexao_sgbd, BD_BASEDEDADOS);
-// Conecta ao MySQL e � base de dados sitedfch
-	function conectar()
-	{
-	// Realiza uma conexao com o MySQL
-		$conexao_sgbd = mysqli_connect(S_SERVIDOR, BD_USUARIO, BD_SENHA);
-		if (!$conexao_sgbd)
-			die('Não foi possível conectar ao banco de dados: ' . mysql_error());
+// Link explicando certinho o que é PDO e como usar: https://www.devmedia.com.br/crud-com-php-pdo/28873
 
-	// Conecta � base de dados
-		$conexao_base = mysqli_select_db($conexao_sgbd, BD_BASEDEDADOS);
-		if (!$conexao_base)
-			die('Não foi possível conectar à base de dados: ' . mysql_error());
+function conectar()
+{
+  $pdo = null;
+  try {
+    // Criando objeto PDO
+    $pdo = new PDO('mysql:host=' . S_SERVIDOR . ';dbname=' . BD_BASEDEDADOS, BD_USUARIO, BD_SENHA);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  } catch (PDOException $e) {
+    echo 'Error: ' . $e->getMessage();
+  }
+  finally {
+    return $pdo;
+  }
+}
 
-	// Retorna a base de dados
-		return $conexao_sgbd;
-	}
+// Exemplo de uso
+/*
+try {
+  // Criando um objeto PDO
+  $pdo = new PDO('mysql:host='.S_SERVIDOR.';dbname='.BD_BASEDEDADOS, BD_USUARIO, BD_SENHA);
+  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-// Fecha conex�o com MySQL
-	function desconectar($conexao)
-	{
-		mysqli_close($conexao);
-	}
+  // Prepared Statement para evitar SQL injection
+  $stmt = $pdo->prepare('UPDATE USUARIO SET NOME = :nome, SOBRENOME = :sobrenome WHERE id = 1');
 
-// Executa uma consulta e retorna o resultado, se houver
-	function executar($conexao, $SQL)
-	{
-		$resultado = mysqli_query($conexao, $SQL);
-	
-	//$resultado = mysql_query($SQL);
-		if (!$resultado)
-			die('Não foi possível realizar a consulta: ' . mysql_error());
+  // Substitui os valores no SQL e já executa
+  $stmt->execute(array(
+    ':nome' => 'Cabo',
+    ':sobrenome' => 'Daciolo'
+  ));
 
-	// Retorna o resultado da consulta
-		return $resultado;
-	}
+  // Numero de linhas percorridas no banco
+  echo $stmt->rowCount();
+} catch(PDOException $e) {
+  echo 'Error: '. $e->getMessage();
+}
 
-// Verifica se a consulta gerou algum resultado
-	function verifica_resultado($resultado)
-	{
-		return (mysqli_num_rows($resultado));
-	}
+ */
 
-// Coloca uma tupla de uma consulta em um array associativo
-	function retorna_linha($consulta)
-	{
-		return mysqli_fetch_assoc($consulta);
-	}
-
-// Conecta ao banco de dados
-	$conexao = conectar();
-
-} // Fim o if(!defined("CONST_BASE.PHP")){
 ?>

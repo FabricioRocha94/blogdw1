@@ -1,9 +1,10 @@
 <?php
 
-require_once 'dataBase2.php';
+require_once 'dataBase.php';
 require_once 'Model/post.php';
 
-function insert($post) {
+function insertPost($post)
+{
   $pdo = conectar();
   // Prepared Statement para evitar SQL injection
   $stmt = $pdo->prepare('INSERT INTO POSTAGEM(TITULO, TEXTO, AUTOR) VALUES(:titulo, :texto, :autor);');
@@ -16,7 +17,8 @@ function insert($post) {
   ));
 }
 
-function update($post) {
+function updatePost($post)
+{
   $pdo = conectar();
   // Prepared Statement para evitar SQL injection
   $stmt = $pdo->prepare('UPDATE POSTAGEM SET TITULO = :titulo, TEXTO = :texto, AUTOR = :autor WHERE ID = :id;');
@@ -30,7 +32,8 @@ function update($post) {
   ));
 }
 
-function read() {
+function readPost()
+{
   $pdo = conectar();
 
   $stmt = $pdo->query('SELECT * FROM POSTAGEM;');
@@ -38,7 +41,8 @@ function read() {
   return $stmt;
 }
 
-function delete($post) {
+function deletePost($post)
+{
   $pdo = conectar();
   // Prepared Statement para evitar SQL injection
   $stmt = $pdo->prepare('DELETE FROM POSTAGEM WHERE ID = :id;');

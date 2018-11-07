@@ -1,42 +1,68 @@
 <?php
-require "dataBase.php";
+require_once 'dataBase.php';
 require_once 'Model/usuario.php';
 
-function inserirUsuario($usuario)
+function insertUsuario($usuario)
 {
-    $conexao = conectar();
-    $insert = executar(
-        $conexao,
-        "INSERT INTO USUARIO (NOME, SOBRENOME, TELEFONE, LOGIN, SENHA) 
-    VALUES ('" . $usuario - getNome . "', '" . $usuario->getSobrenome . "',
-     '" . $usuario->getTelefone . "', '" . $usuario->getLogin() . "', '" . $usuario->getSenha() . "')"
-    );
-    $desconectar = desconectar($conexao);
+    $pdo = conectar();
+  // Prepared Statement para evitar SQL injection
+    $stmt = $pdo->prepare('INSERT INTO USUARIO (NOME, SOBRENOME, TELEFONE, LOGIN, SENHA) 
+    VALUES (:nome, :sobrenome, :telefone, :login, :senha);');
+
+  // Substitui os valores no SQL e já executa
+    $stmt->execute(array(
+        ':nome' => $usuario->getNome(),
+        ':sobrenome' => $usuario->getSobrenome(),
+        ':telefone' => $usuario->getTelefone(),
+        ':login' => $usuario->getLogin(),
+        ':senha' => $usuario->getSenha()
+    ));
+}
+
+function update($usuario)
+{
+    $pdo = conectar();
+  // Prepared Statement para evitar SQL injection
+    $stmt = $pdo->prepare('UPDATE USUARIO SET NOME = :nome, 
+                                SOBRENOME = :texto, 
+                                TELEFONE = :autor, 
+                                LOGIN = :login, 
+                                SENHA = :senha
+                                 WHERE ID = :id;');
+
+  // Substitui os valores no SQL e já executa
+    $stmt->execute(array(
+        ':nome' => $usuario->getNome(),
+        ':sobrenome' => $usuario->getSobrenome(),
+        ':telefone' => $usuario->getTelefone(),
+        ':login' => $usuario->getLogin(),
+        ':senha' => $usuario->getSenha()
+    ));
 }
 
 function listarUsuario()
 {
-    $conexao = conectar();
-    $select = executar($conexao, "SELECT * FROM USUARIO");
-    $desconectar = desconectar($conexao);
-    return $select;
+    $pdo = conectar();
+
+    $stmt = $pdo->query('SELECT * FROM USUARIO;');
+
+    return $stmt;
 }
 
 function getUsuario($id)
 {
-    $conexao = conectar();
-    $select = executar($conexao, "SELECT * FROM USUARIO WHERE ID = " . $id);
-    $desconectar = desconectar($conexao);
+    $pdo = conectar();
+    $select = $pdo->query("SELECT * FROM USUARIO WHERE ID = " . $id);
 
-    $linha = retorna_linha($select);
+    $select = $select->fetch();
 
     $usuario = new Usuario();
-    $usuario->setId($linha['ID']);
-    $usuario->setNome($linha['NOME']);
-    $usuario->setSobrenome($linha['SOBRENOME']);
-    $usuario->setTelefone($linha['TELEFONE']);
-    $usuario->setLogin($linha['LOGIN']);
-    $usuario->setSenha($linha['SENHA']);
+    $usuario->setId($select['ID']);
+    $usuario->setNome($select['NOME']);
+    $usuario->setSobrenome($select['SOBRENOME']);
+    $usuario->setTelefone($select['TELEFONE']);
+    $usuario->setLogin($select['LOGIN']);
+    $usuario->setSenha($select['SENHA']);
 
     return $usuario;
 }
