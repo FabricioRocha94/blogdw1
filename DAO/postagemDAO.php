@@ -1,7 +1,8 @@
 <?php
 require "dataBase.php";
+require_once 'Model/post.php';
 
-function inserir($post)
+function inserirPost($post)
 {
     $conexao = conectar();
     $insert = executar($conexao, "INSERT INTO POSTAGEM (TITULO, TEXTO, AUTOR) VALUES ('" . $post - getTitulo . "', '" . $post->getTexto . "', " . $post->getAutor . ")");

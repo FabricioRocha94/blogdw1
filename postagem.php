@@ -13,12 +13,14 @@
 
     require_once 'Model/post.php';
     require_once 'DAO/postagemDAO.php';
+    require_once 'DAO/usuarioDAO.php';
 
     function posts()
     {
         $select = listarPosts();
         $linha = retorna_linha($select);
         $total = verifica_resultado($select);
+        
 
     // se o número de resultados for maior que zero, mostra os dados
         if ($total > 0) {
@@ -26,14 +28,15 @@
             do {
                 ?>
             <div class="card-header bg-light">
-                    <?= $linha['TITULO'] ?>
+                    <h3><?= $linha['TITULO'] ?></h3>
             </div>
                     <div class="card-body bg-light">
                     <ul class="list-unstyled text-white text-muted">
                         <?= $linha['TEXTO'] ?>
                     </ul>
                     <ul class="list-unstyled text-white text-muted">
-                        <?= "Autor: ", $linha['AUTOR'], " - Postado em: ", $linha['DATA'] ?>
+                        <?php $autor = getUsuario($linha['AUTOR']); ?>
+                        <?= "Autor: ", $autor->getNome(), " - Postado em: ", $linha['DATA'] ?>
                     </ul>
             </div>
 <?php
