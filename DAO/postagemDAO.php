@@ -1,27 +1,52 @@
 <?php
-require_once 'dataBase.php';
-require_once '../Model/post.php';
 
-function inserirPost($post)
-{
-    $conexao = conectar();
-    $insert = executar($conexao, "INSERT INTO POSTAGEM (TITULO, TEXTO, AUTOR) VALUES('" . $post->getTitulo() . "', '" . $post->getTexto() . "', '" . $post->getAutor() . "')");
-    $desconectar = desconectar($conexao);
+require_once 'dataBase2.php';
+require_once 'Model/post.php';
+
+function insert($post) {
+  $pdo = conectar();
+  // Prepared Statement para evitar SQL injection
+  $stmt = $pdo->prepare('INSERT INTO POSTAGEM(TITULO, TEXTO, AUTOR) VALUES(:titulo, :texto, :autor);');
+
+  // Substitui os valores no SQL e já executa
+  $stmt->execute(array(
+    ':titulo' => $post->getTitulo(),
+    ':texto' => $post->getTexto(),
+    ':autor' => $post->getAutor()
+  ));
 }
 
-function listarPosts()
-{
-    $conexao = conectar();
-    $select = executar($conexao, "SELECT * FROM POSTAGEM");
-    $desconectar = desconectar($conexao);
-    echo $select;
-    return $select;
+function update($post) {
+  $pdo = conectar();
+  // Prepared Statement para evitar SQL injection
+  $stmt = $pdo->prepare('UPDATE POSTAGEM SET TITULO = :titulo, TEXTO = :texto, AUTOR = :autor WHERE ID = :id;');
+
+  // Substitui os valores no SQL e já executa
+  $stmt->execute(array(
+    ':titulo' => $post->getTitulo(),
+    ':texto' => $post->getTexto(),
+    ':autor' => $post->getAutor(),
+    ':id' => $post->getId()
+  ));
 }
 
-// TESTE
-$teste = new Post();
-$teste->setTitulo('Glória a DEUXXX');
-$teste->setTexto('Iluminatis');
-$teste->setAutor('Cabo Daciolo');
-inserirPost($teste);
+function read() {
+  $pdo = conectar();
+
+  $stmt = $pdo->query('SELECT * FROM POSTAGEM;');
+
+  return $stmt;
+}
+
+function delete($post) {
+  $pdo = conectar();
+  // Prepared Statement para evitar SQL injection
+  $stmt = $pdo->prepare('DELETE FROM POSTAGEM WHERE ID = :id;');
+
+  // Substitui os valores no SQL e já executa
+  $stmt->execute(array(
+    ':id' => $post->getId()
+  ));
+}
+
 ?>

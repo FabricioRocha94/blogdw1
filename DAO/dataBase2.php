@@ -8,6 +8,21 @@ define('BD_BASEDEDADOS', 'BLOGDW1');
 
 // Link explicando certinho o que é PDO e como usar: https://www.devmedia.com.br/crud-com-php-pdo/28873
 
+function conectar() {
+  $pdo = null;
+  try {
+    // Criando objeto PDO
+    $pdo = new PDO('mysql:host='.S_SERVIDOR.';dbname='.BD_BASEDEDADOS, BD_USUARIO, BD_SENHA);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+  } catch(PDOException $e) {
+    echo 'Error: '. $e->getMessage();
+  } finally {
+    return $pdo;
+  }
+}
+
+// Exemplo de uso
+/*
 try {
   // Criando um objeto PDO
   $pdo = new PDO('mysql:host='.S_SERVIDOR.';dbname='.BD_BASEDEDADOS, BD_USUARIO, BD_SENHA);
@@ -27,5 +42,7 @@ try {
 } catch(PDOException $e) {
   echo 'Error: '. $e->getMessage();
 }
+
+*/
 
 ?>
