@@ -87,7 +87,7 @@
                 Entrar
               </a>
               <div class="dropdown-menu">
-                <form class="px-4 py-3">
+                <form class="px-4 py-3" method="post" action="login.php">
                   <div class="form-group">
                     <label for="login"
                       >Login</label
@@ -97,7 +97,7 @@
                       class="form-control"
                       id="login"
                       placeholder="Login"
-                    />
+                      name="login"/>
                   </div>
                   <div class="form-group">
                     <label for="senha">Senha</label>
@@ -106,7 +106,7 @@
                       class="form-control"
                       id="senha"
                       placeholder="Senha"
-                    />
+                      name="senha"/>
                   </div>
                   <div class="form-check">
                     <input
@@ -115,14 +115,14 @@
                       id="dropdownCheck"
                     />
                     <label class="form-check-label" for="dropdownCheck">
-                      Remember me
+                      Lembrar
                     </label>
                   </div>
                   <button type="submit" class="btn btn-primary">Entrar</button>
                 </form>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#"
-                  >Novo, por aqui? Regitre-se.</a
+                  >Cadastrar</a
                 >
               </div>
             </li>
