@@ -89,22 +89,22 @@
               <div class="dropdown-menu">
                 <form class="px-4 py-3">
                   <div class="form-group">
-                    <label for="exampleDropdownFormEmail1"
-                      >Endereço de email</label
+                    <label for="login"
+                      >Login</label
                     >
                     <input
-                      type="email"
+                      type="text"
                       class="form-control"
-                      id="exampleDropdownFormEmail1"
-                      placeholder="email@exemplo.com"
+                      id="login"
+                      placeholder="Login"
                     />
                   </div>
                   <div class="form-group">
-                    <label for="exampleDropdownFormPassword1">Senha</label>
+                    <label for="senha">Senha</label>
                     <input
                       type="password"
                       class="form-control"
-                      id="exampleDropdownFormPassword1"
+                      id="senha"
                       placeholder="Senha"
                     />
                   </div>
