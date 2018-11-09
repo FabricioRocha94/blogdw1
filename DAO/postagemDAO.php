@@ -53,4 +53,17 @@ function deletePost($post)
   ));
 }
 
+function readComentarios($id)
+{
+  $pdo = conectar();
+
+  $stmt = $pdo->prepare('SELECT * FROM COMENTARIO WHERE IDPOSTAGEM = :id;');
+
+  $stmt->query(array(
+    ':id' => $id
+  ));
+
+  return $stmt;
+}
+
 ?>

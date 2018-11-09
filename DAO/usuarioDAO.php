@@ -66,4 +66,26 @@ function getUsuario($id)
 
     return $usuario;
 }
+
+function verificaLogin($login, $senha)
+{
+    $pdo = conectar();
+    $select = $pdo->query("SELECT * FROM USUARIO WHERE LOGIN = '" . $login . "' AND SENHA = '" . $senha . "'");
+
+    $select = $select->fetch();
+    if ($select == false) {
+        return false;
+    } else {
+        $usuario = new Usuario();
+        $usuario->setId($select['ID']);
+        $usuario->setNome($select['NOME']);
+        $usuario->setSobrenome($select['SOBRENOME']);
+        $usuario->setTelefone($select['TELEFONE']);
+        $usuario->setLogin($select['LOGIN']);
+        $usuario->setSenha($select['SENHA']);
+        $usuario->setAdmin($select['ADMIN']);
+
+        return $usuario;
+    }
+}
 ?>

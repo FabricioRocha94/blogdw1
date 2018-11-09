@@ -74,7 +74,7 @@
 
             <li class="nav-item "><a class="nav-link" href="#">Contato</a></li>
 
-            <li class="nav-item  dropdown">
+              <li class="nav-item  dropdown">
               <a
                 class="nav-link dropdown-toggle"
                 href="#"
@@ -141,6 +141,17 @@
         </div>
       </nav>
     </div>
+        <div>
+          <br>
+          <?php
+          if (isset($_GET["msg"])) {
+            echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg"] . "</div>";
+          }
+          if (isset($_GET["msg2"])) {
+            echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg2"] . "</div>";
+          }
+          ?>
+        </div>
 
     <div class="container-fluid mt-4 text-center">
       <div class="row">
@@ -150,7 +161,8 @@
               <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
                 <?php 
                 require "postagem.php";
-                posts();
+                $id = 0;
+                posts($id);
                 ?>
             </div>
             </div>

@@ -8,6 +8,7 @@ class Usuario
     private $telefone;
     private $login;
     private $senha;
+    private $admin;
 
     public function getId()
     {
@@ -67,6 +68,16 @@ class Usuario
     public function setSenha($senha)
     {
         return $this->senha = $senha;
+    }
+
+    public function getAdmin()
+    {
+        return $this->admin;
+    }
+
+    public function setAdmin($admin)
+    {
+        return $this->admin = $admin;
     }
 }
 
