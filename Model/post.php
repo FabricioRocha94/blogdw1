@@ -55,7 +55,7 @@ class Post
 
 	public function setData($data)
 	{
-		$this->date = $data;
+		$this->data = $data;
 	}
 }
 

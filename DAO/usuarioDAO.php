@@ -1,6 +1,8 @@
 <?php
+
+$dir = $_SERVER['DOCUMENT_ROOT'];
 require_once 'dataBase.php';
-require_once 'Model/usuario.php';
+require_once $dir . '/blogdw1/Model/usuario.php';
 
 function insertUsuario($usuario)
 {
@@ -19,24 +21,39 @@ function insertUsuario($usuario)
     ));
 }
 
-function update($usuario)
+function updateUsuario($usuario)
 {
     $pdo = conectar();
   // Prepared Statement para evitar SQL injection
     $stmt = $pdo->prepare('UPDATE USUARIO SET NOME = :nome, 
-                                SOBRENOME = :texto, 
-                                TELEFONE = :autor, 
+                                SOBRENOME = :sobrenome, 
+                                TELEFONE = :telefone, 
                                 LOGIN = :login, 
-                                SENHA = :senha
+                                SENHA = :senha, 
+                                ADMIN = :admin
                                  WHERE ID = :id;');
 
   // Substitui os valores no SQL e já executa
     $stmt->execute(array(
+        ':id' => $usuario->getId(),
         ':nome' => $usuario->getNome(),
         ':sobrenome' => $usuario->getSobrenome(),
         ':telefone' => $usuario->getTelefone(),
         ':login' => $usuario->getLogin(),
-        ':senha' => $usuario->getSenha()
+        ':senha' => $usuario->getSenha(),
+        ':admin' => $usuario->getAdmin()
+    ));
+}
+
+function deleteUsuario($user)
+{
+    $pdo = conectar();
+  // Prepared Statement para evitar SQL injection
+    $stmt = $pdo->prepare('DELETE FROM USUARIO WHERE ID = :id;');
+
+  // Substitui os valores no SQL e já executa
+    $stmt->execute(array(
+        ':id' => $user
     ));
 }
 
@@ -63,6 +80,8 @@ function getUsuario($id)
     $usuario->setTelefone($select['TELEFONE']);
     $usuario->setLogin($select['LOGIN']);
     $usuario->setSenha($select['SENHA']);
+    $admin = $select['ADMIN'];
+    $admin = $admin == 1 ? $usuario->setAdmin(true) : $usuario->setAdmin(false);
 
     return $usuario;
 }

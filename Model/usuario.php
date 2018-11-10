@@ -8,7 +8,7 @@ class Usuario
     private $telefone;
     private $login;
     private $senha;
-    private $admin;
+    private $admin = 0;
 
     public function getId()
     {
@@ -78,6 +78,11 @@ class Usuario
     public function setAdmin($admin)
     {
         return $this->admin = $admin;
+    }
+
+    public function __toString()
+    {
+        return $this->getNome();
     }
 }
 

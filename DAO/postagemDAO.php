@@ -1,7 +1,7 @@
 <?php
-
+$dir = $_SERVER['DOCUMENT_ROOT'];
 require_once 'dataBase.php';
-require_once 'Model/post.php';
+require_once $dir . '/blogdw1/Model/post.php';
 
 function insertPost($post)
 {
@@ -68,7 +68,7 @@ function deletePost($post)
 
   // Substitui os valores no SQL e já executa
   $stmt->execute(array(
-    ':id' => $post->getId()
+    ':id' => $post
   ));
 }
 

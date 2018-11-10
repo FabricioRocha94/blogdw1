@@ -18,6 +18,17 @@
 
     <title>Olá, mundo!</title>
 
+    <?php
+
+    if (!isset($_SESSION))
+      session_start();
+
+    if (isset($_GET["logout"])) {
+      require_once "login.php";
+      logout();
+    }
+    ?>
+
   </head>
   <body>
     <div class="container-fluid mt-5 text-center">
@@ -76,6 +87,11 @@
 
             <li class="nav-item "><a class="nav-link" href="#">Contato</a></li>
 
+            <?php 
+            if (!isset($_SESSION['UsuarioID'])) {
+              session_destroy();
+              ?>
+
               <li class="nav-item  dropdown">
               <a
                 class="nav-link dropdown-toggle"
@@ -128,6 +144,24 @@
                 >
               </div>
             </li>
+
+            <?php
+
+          } else if (isset($_SESSION['UsuarioID'])) { ?>
+
+              <li class="nav-item "><a class="nav-link" href="index.php?logout=true">Sair</a></li>
+
+              <?php 
+              if ($_SESSION['UsuarioAdmin'] == 1) { ?>
+                  <li class="nav-item "><a class="nav-link" href="Admin/admin.php">Painel Admin</a></li>
+              <?php 
+            } ?>
+
+            <?php
+
+          }
+          ?>
+
           </ul>
           <form class="form-inline my-2 my-lg-0">
             <input
@@ -152,6 +186,9 @@
           if (isset($_GET["msg2"])) {
             echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg2"] . "</div>";
           }
+          if (isset($_GET["msg3"])) {
+            echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg3"] . "</div>";
+          }
           ?>
         </div>
 
@@ -162,7 +199,7 @@
             <div class="col">
               <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
                 <?php 
-                require "postagem.php";
+                require_once "postagem.php";
                 if (isset($_GET["id"])) {
                   comentarios($_GET["id"]);
                 } else {

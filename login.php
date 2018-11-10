@@ -22,17 +22,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['UsuarioAdmin'] = $user->getAdmin();
 
         $login = json_encode(array('logado' => true, 'admin' => $_SESSION['UsuarioAdmin'], 'msg' => $msg2));
-        header("Location:index.php?login=" . $login);
+        header("Location:index.php");
     } else {
         header("Location:index.php?msg=" . $msg);
     }
+}
 
-    function logout()
-    {
-        session_destroy();
-        header("Location: index.php");
-        exit;
-    }
-
+function logout()
+{
+    $msg3 = "Sessão encerrada!";
+    session_destroy();
+    header("Location:index.php?msg3=" . $msg3);
 }
 ?>
