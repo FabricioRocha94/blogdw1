@@ -17,6 +17,7 @@
     />
 
     <title>Olá, mundo!</title>
+
   </head>
   <body>
     <div class="container-fluid mt-5 text-center">
@@ -32,7 +33,8 @@
       <nav
         class="navbar navbar-expand-lg navbar-light bg-light navbar-border mt-4"
       >
-        <a class="navbar-brand" href="#">Home</a>
+        <a class="navbar-brand" href="#">Home
+        </a>
         <button
           class="navbar-toggler"
           type="button"
@@ -161,8 +163,11 @@
               <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
                 <?php 
                 require "postagem.php";
-                $id = 0;
-                posts($id);
+                if (isset($_GET["id"])) {
+                  comentarios($_GET["id"]);
+                } else {
+                  posts();
+                }
                 ?>
             </div>
             </div>

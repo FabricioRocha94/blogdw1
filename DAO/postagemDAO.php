@@ -32,6 +32,25 @@ function updatePost($post)
   ));
 }
 
+function getPost($id)
+{
+  $pdo = conectar();
+
+  $stmt = $pdo->query('SELECT * FROM POSTAGEM WHERE ID=' . $id);
+
+  $select = $stmt->fetch();
+
+  $post = new Post();
+  $post->setId($select['ID']);
+  $post->setTitulo($select['TITULO']);
+  $post->setAutor($select['AUTOR']);
+  $post->setTexto($select['TEXTO']);
+  $post->setData($select['DATA']);
+
+  return $post;
+}
+
+
 function readPost()
 {
   $pdo = conectar();
@@ -57,11 +76,7 @@ function readComentarios($id)
 {
   $pdo = conectar();
 
-  $stmt = $pdo->prepare('SELECT * FROM COMENTARIO WHERE IDPOSTAGEM = :id;');
-
-  $stmt->query(array(
-    ':id' => $id
-  ));
+  $stmt = $pdo->query('SELECT * FROM COMENTARIO WHERE IDPOSTAGEM =' . $id);
 
   return $stmt;
 }

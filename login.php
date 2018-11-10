@@ -1,13 +1,13 @@
 <?php
 require_once 'DAO/usuarioDAO.php';
 require_once 'Model/usuario.php';
+header('Content-Type: application/json; charset=utf8');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $login = $_POST["login"];
     $senha = $_POST["senha"];
-    $msg = "Usuario ou senha inválidos!";
+    $msg = "Login ou senha inválidos!";
     $msg2 = "Logado com sucesso!";
-    $logout = false;
     $user = new Usuario();
     $user = verificaLogin($login, $senha);
 
@@ -20,16 +20,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['UsuarioID'] = $user->getId();
         $_SESSION['UsuarioNome'] = $user->getNome();
         $_SESSION['UsuarioAdmin'] = $user->getAdmin();
-    
-      // Redireciona o visitante
-        //header("Location: restrito.php");
 
-        if ($_SESSION['UsuarioAdmin'] == true) {
-            header("Location:index.php?msg2=" . $msg2);
-        } else if ($_SESSION['UsuarioAdmin'] == false) {
-            //$response = json_encode(array('success' => true, 'nota' => $notapost, 'cnpjpost' => $cnpjpost));
-            header("Location:index.php?response=" . $response);
-        }
+        $login = json_encode(array('logado' => true, 'admin' => $_SESSION['UsuarioAdmin'], 'msg' => $msg2));
+        header("Location:index.php?login=" . $login);
     } else {
         header("Location:index.php?msg=" . $msg);
     }

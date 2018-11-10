@@ -7,8 +7,6 @@ require_once 'DAO/usuarioDAO.php';
 function posts()
 {
     $select = readPost();
-    //$id = $_GET["id"];
-    //if ($id == 0) {
     while ($linha = $select->fetch(PDO::FETCH_ASSOC)) {
         ?>
             <div class="card-header bg-light">
@@ -25,43 +23,52 @@ function posts()
             </div>
             <?php
 
-        }/*
+        }
+    }
 
-    } else if ($id > 0) {
-        $comentario = readComentarios($linha['ID'])
+    function comentarios($id)
+    {
+        $post = new Post();
+        $post = getPost($id);
         ?>
+                    <div class="card-header bg-light">
+                    <h3><?= $post->getTitulo() ?></h3>
+            </div>
+            <div class="card-body bg-light">
+                    <ul class="list-unstyled text-white text-muted">
+                        <?= $post->getTexto() ?>
+                    </ul>
+                    <ul class="list-unstyled text-white text-muted">
+                        <?php $autor = getUsuario($post->getAutor()); ?>
+                        <b><?= "Autor: ", $autor->getNome(), " - Postado em: ", $post->getData() ?></b>
+                    </ul>
+                    <br>
+
+                                <h4>Comentarios</h4>
+            </div>
+            
+        <?php
+
+        $select = readComentarios($id);
+
+        while ($linha = $select->fetch(PDO::FETCH_ASSOC)) {
+            ?>
             <div class="card-header bg-light">
-                    <h3><?= $linha['TITULO'] ?></h3>
+                            <hr>
+                    <?php $autor = getUsuario($linha['AUTOR']); ?>
+                    <h3><?= "Autor: " . $autor->getNome() ?></h3>
             </div>
             <div class="card-body bg-light">
                     <ul class="list-unstyled text-white text-muted">
                         <?= $linha['TEXTO'] ?>
                     </ul>
                     <ul class="list-unstyled text-white text-muted">
-                        <?php $autor = getUsuario($linha['AUTOR']); ?>
-                        <b><?= "Autor: ", $autor->getNome(), " - Postado em: ", $linha['DATA'] ?></b>
-                    </ul>
-            </div>
-            <br>
-            
-            <?php 
-            while ($comentario = $comentario->fetch(PDO::FETCH_ASSOC)) { ?>
-
-            <div class="card-header bg-light">
-                    <h3><?= "Autor:" . $comentario['NOME'] ?></h3>
-            </div>
-            <div class="card-body bg-light">
-                    <ul class="list-unstyled text-white text-muted">
-                        <?= $comentario['TEXTO'] ?>
-                    </ul>
-                    <ul class="list-unstyled text-white text-muted">
-                        <?php $autor = getUsuario($linha['AUTOR']); ?>
+    
                         <b><?= "Postado em: ", $linha['DATA'] ?></b>
                     </ul>
             </div>
-            <?php 
-        }*/
-    }
-//}
+            <?php
 
+        }
+    }
     ?>
