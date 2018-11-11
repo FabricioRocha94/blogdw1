@@ -63,7 +63,6 @@ $user = getUsuario($_GET["id"]);
     <a href="update.php?id=<?= $user->getId(), "&acao=user" ?>" class="btn btn-danger">Excluir</a>
     <a href="admin.php" class="btn btn-primary">Voltar</a>
 </form>
-</form>
 </div>
 
     <!-- JavaScript (Opcional) -->

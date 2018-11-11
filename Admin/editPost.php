@@ -54,7 +54,6 @@ $autor = getUsuario($post->getAutor());
     <a href="update.php?id=<?= $post->getId(), "&acao=post" ?>" class="btn btn-danger">Excluir</a>
     <a href="admin.php" class="btn btn-primary">Voltar</a>
 </form>
-</form>
 </div>
 
     <!-- JavaScript (Opcional) -->

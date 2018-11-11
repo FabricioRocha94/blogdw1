@@ -139,7 +139,7 @@
                   <button type="submit" class="btn btn-primary">Entrar</button>
                 </form>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#"
+                <a class="dropdown-item" href="index.php?cadastrar=true"
                   >Cadastrar</a
                 >
               </div>
@@ -189,6 +189,9 @@
           if (isset($_GET["msg3"])) {
             echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg3"] . "</div>";
           }
+          if (isset($_GET["msg4"])) {
+            echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg4"] . "</div>";
+          }
           ?>
         </div>
 
@@ -199,8 +202,14 @@
             <div class="col">
                 <?php 
                 require_once "postagem.php";
+                require_once "cadastro.php";
+
                 if (isset($_GET["id"])) {
                   comentarios($_GET["id"]);
+                } else if (isset($_GET["cadastrar"])) {
+                  cadastrar();
+                } else if (isset($_GET["comment"])) {
+                  comentar($_GET["comment"]);
                 } else {
                   posts();
                 }

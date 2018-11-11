@@ -13,7 +13,6 @@ if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioAdmin'] == !$admin)) {
     exit;
 }
 
-
 $dir = $_SERVER['DOCUMENT_ROOT'];
 require_once $dir . "/blogdw1/DAO/postagemDAO.php";
 require_once $dir . "/blogdw1/DAO/usuarioDAO.php";
@@ -29,6 +28,7 @@ if ($action == "post") {
     $id = $_GET["id"];
     deleteUsuario($id);
     header("Location:admin.php");
+
 } else if ($action == "comment") {
     $id = $_GET["id"];
     $idPost = $_GET["post"];
@@ -59,6 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $user->setAdmin($_POST["admin"] == true ? 1 : 0);
         updateUsuario($user);
         header("Location:admin.php");
+
     }
 }
 
