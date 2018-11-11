@@ -16,9 +16,6 @@
       crossorigin="anonymous"
     />
 
-<link rel="stylesheet" type="text/css" href="styleSheet.css">
-
-
     <title>Olá, mundo!</title>
 
     <?php
@@ -33,7 +30,7 @@
     ?>
 
   </head>
-  <body>
+  <body class="bg-white">
     <div class="container-fluid mt-5 text-center">
       <img
         src="Daciolo_Banner.png"
@@ -45,9 +42,9 @@
     </div>
     <div class="container">
       <nav
-        class="navbar navbar-expand-lg navbar-light bg-light navbar-border mt-4"
+        class="navbar navbar-expand-lg navbar-light bg-light rounded mt-4"
       >
-        <a class="navbar-brand" href="#">Home
+        <a class="navbar-brand" href="index.php">Home
         </a>
         <button
           class="navbar-toggler"
@@ -200,7 +197,6 @@
         <div class="col-9  ">
           <div class="row">
             <div class="col">
-              <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
                 <?php 
                 require_once "postagem.php";
                 if (isset($_GET["id"])) {
@@ -209,7 +205,6 @@
                   posts();
                 }
                 ?>
-            </div>
             </div>
           </div>
 
@@ -231,7 +226,7 @@
             </div>
           </div>
         </div>
-        <div class="col-3 bg-success sideBarPropaganda"><p>ksdljk</p></div>
+        <div class="col-3 bg-success rounded-left"><p>ksdljk</p></div>
       </div>
     </div>
 

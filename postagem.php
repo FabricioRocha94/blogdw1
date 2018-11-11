@@ -12,6 +12,7 @@ function posts()
     $select = readPost();
     while ($linha = $select->fetch(PDO::FETCH_ASSOC)) {
         ?>
+    <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
             <div class="card-header bg-light">
                     <h3><a href="index.php?id=<?php echo $linha['ID'] ?>" ><?= $linha['TITULO'] ?></a></h3>
             </div>
@@ -19,11 +20,14 @@ function posts()
                     <ul class="list-unstyled text-white text-muted">
                         <?= $linha['TEXTO'] ?>
                     </ul>
+            </div>
+            <div class="card-footer bg-light">
                     <ul class="list-unstyled text-white text-muted">
                         <?php $autor = getUsuario($linha['AUTOR']); ?>
                         <b><?= "Autor: ", $autor->getNome(), " - Postado em: ", $linha['DATA'] ?></b>
                     </ul>
             </div>
+    </div>
             <?php
 
         }
@@ -34,39 +38,44 @@ function posts()
         $post = new Post();
         $post = getPost($id);
         ?>
-                    <div class="card-header bg-light">
+    <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
+        <div class="card-header bg-light">
                     <h3><?= $post->getTitulo() ?></h3>
-            </div>
-            <div class="card-body bg-light">
-                    <ul class="list-unstyled text-white text-muted">
-                        <?= $post->getTexto() ?>
-                    </ul>
-                    <ul class="list-unstyled text-white text-muted">
-                        <?php $autor = getUsuario($post->getAutor()); ?>
-                        <b><?= "Autor: ", $autor->getNome(), " - Postado em: ", $post->getData() ?></b>
-                    </ul>
-                    <br>
-
-                                <h4>Comentarios</h4>
-            </div>
-            
+        </div>
+        <div class="card-body bg-light">
+            <ul class="list-unstyled text-white text-muted">
+                <?= $post->getTexto() ?>
+            </ul>
+        </div>
+        <div class="card-footer bg-light">
+            <ul class="list-unstyled text-white text-muted">
+                 <?php $autor = getUsuario($post->getAutor()); ?>
+                 <b><?= "Autor: ", $autor->getNome(), " - Postado em: ", $post->getData() ?></b>
+            </ul>
+        </div>
+        
+    </div>
         <?php
 
         $select = readComentarios($id);
 
+        echo "<br><div class='card bg-light border-light text-center ml-5 mt-3 mb-3'>
+                <h3>Comentarios</h3></div>";
+
         while ($linha = $select->fetch(PDO::FETCH_ASSOC)) {
             ?>
+        <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
             <div class="card-header bg-light">
-                            <hr>
                     <?php $autor = getUsuario($linha['AUTOR']); ?>
-                    <h3><?= "Autor: " . $autor->getNome() ?></h3>
+                    <h4><?= "Autor: " . $autor->getNome() ?></h4>
             </div>
             <div class="card-body bg-light">
                     <ul class="list-unstyled text-white text-muted">
                         <?= $linha['TEXTO'] ?>
                     </ul>
+            </div>
+            <div class="card-footer bg-light">
                     <ul class="list-unstyled text-white text-muted">
-    
                         <b><?= "Postado em: ", $linha['DATA'] ?></b>
                     </ul>
                     
@@ -79,6 +88,7 @@ function posts()
             } ?>
 
             </div>
+        </div>
             <?php
 
         }
