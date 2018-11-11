@@ -26,7 +26,7 @@
   <body>
     
 <div class="list-group">
-  <a href="Admin/admin.php" class="list-group-item list-group-item-action active">
+  <a href="admin.php" class="list-group-item list-group-item-action active">
     Painel admin
   </a>
   <a href="admin.php?acao=posts" class="list-group-item list-group-item-action">Gerenciar Postagens</a>
@@ -49,6 +49,8 @@ if (isset($_GET["acao"])) {
   if ($acao == "posts") {
     echo "<h3>Gerênciar Postagens</h3>";
     $select = readPost();
+
+    echo "<a href='criarPost.php' class='btn btn-danger m-2 mb-4'>Criar Postagem</a>";
     while ($linha = $select->fetch(PDO::FETCH_ASSOC)) {
       ?>
       <div class="list-group">

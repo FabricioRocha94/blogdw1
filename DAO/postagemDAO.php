@@ -55,7 +55,7 @@ function readPost()
 {
   $pdo = conectar();
 
-  $stmt = $pdo->query('SELECT * FROM POSTAGEM WHERE DELETADO = FALSE;;');
+  $stmt = $pdo->query('SELECT * FROM POSTAGEM WHERE DELETADO = FALSE ORDER BY DATA DESC;');
 
   return $stmt;
 }

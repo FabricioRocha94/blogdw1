@@ -61,7 +61,7 @@ function listarUsuario()
 {
     $pdo = conectar();
 
-    $stmt = $pdo->query('SELECT * FROM USUARIO WHERE DELETADO = FALSE;');
+    $stmt = $pdo->query('SELECT * FROM USUARIO WHERE DELETADO = FALSE ORDER BY DATA DESC;');
 
     return $stmt;
 }
