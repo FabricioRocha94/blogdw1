@@ -36,7 +36,7 @@ function getPost($id)
 {
   $pdo = conectar();
 
-  $stmt = $pdo->query('SELECT * FROM POSTAGEM WHERE ID=' . $id);
+  $stmt = $pdo->query('SELECT * FROM POSTAGEM WHERE ID=' . $id . " AND DELETADO = FALSE;");
 
   $select = $stmt->fetch();
 
@@ -55,7 +55,7 @@ function readPost()
 {
   $pdo = conectar();
 
-  $stmt = $pdo->query('SELECT * FROM POSTAGEM;');
+  $stmt = $pdo->query('SELECT * FROM POSTAGEM WHERE DELETADO = FALSE;;');
 
   return $stmt;
 }
@@ -64,7 +64,7 @@ function deletePost($post)
 {
   $pdo = conectar();
   // Prepared Statement para evitar SQL injection
-  $stmt = $pdo->prepare('DELETE FROM POSTAGEM WHERE ID = :id;');
+  $stmt = $pdo->prepare('UPDATE POSTAGEM SET DELETADO = TRUE WHERE ID = :id;');
 
   // Substitui os valores no SQL e já executa
   $stmt->execute(array(
@@ -72,11 +72,23 @@ function deletePost($post)
   ));
 }
 
+function deleteComentario($id)
+{
+  $pdo = conectar();
+  // Prepared Statement para evitar SQL injection
+  $stmt = $pdo->prepare('UPDATE COMENTARIO SET DELETADO = TRUE WHERE ID = :id;');
+
+  // Substitui os valores no SQL e já executa
+  $stmt->execute(array(
+    ':id' => $id
+  ));
+}
+
 function readComentarios($id)
 {
   $pdo = conectar();
 
-  $stmt = $pdo->query('SELECT * FROM COMENTARIO WHERE IDPOSTAGEM =' . $id);
+  $stmt = $pdo->query('SELECT * FROM COMENTARIO WHERE IDPOSTAGEM =' . $id . " AND DELETADO = FALSE;");
 
   return $stmt;
 }

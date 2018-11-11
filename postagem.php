@@ -4,6 +4,9 @@ require_once 'Model/post.php';
 require_once 'DAO/postagemDAO.php';
 require_once 'DAO/usuarioDAO.php';
 
+if (!isset($_SESSION))
+    session_start();
+
 function posts()
 {
     $select = readPost();
@@ -66,6 +69,15 @@ function posts()
     
                         <b><?= "Postado em: ", $linha['DATA'] ?></b>
                     </ul>
+                    
+                    <?php
+                    if (isset($_SESSION['UsuarioAdmin'])) {
+                        if ($_SESSION['UsuarioAdmin'] == true) { ?>
+                        <a href="Admin/update.php?id=<?= $linha['ID'], "&acao=comment&post=", $linha['IDPOSTAGEM'] ?>" class="btn btn-danger">Excluir</a>
+                    <?php 
+                }
+            } ?>
+
             </div>
             <?php
 

@@ -49,7 +49,7 @@ function deleteUsuario($user)
 {
     $pdo = conectar();
   // Prepared Statement para evitar SQL injection
-    $stmt = $pdo->prepare('DELETE FROM USUARIO WHERE ID = :id;');
+    $stmt = $pdo->prepare('UPDATE USUARIO SET DELETADO = TRUE WHERE ID = :id;');
 
   // Substitui os valores no SQL e já executa
     $stmt->execute(array(
@@ -61,7 +61,7 @@ function listarUsuario()
 {
     $pdo = conectar();
 
-    $stmt = $pdo->query('SELECT * FROM USUARIO;');
+    $stmt = $pdo->query('SELECT * FROM USUARIO WHERE DELETADO = FALSE;');
 
     return $stmt;
 }
@@ -69,7 +69,7 @@ function listarUsuario()
 function getUsuario($id)
 {
     $pdo = conectar();
-    $select = $pdo->query("SELECT * FROM USUARIO WHERE ID = " . $id);
+    $select = $pdo->query("SELECT * FROM USUARIO WHERE ID = " . $id . " AND DELETADO = FALSE;");
 
     $select = $select->fetch();
 
@@ -89,10 +89,10 @@ function getUsuario($id)
 function verificaLogin($login, $senha)
 {
     $pdo = conectar();
-    $select = $pdo->query("SELECT * FROM USUARIO WHERE LOGIN = '" . $login . "' AND SENHA = '" . $senha . "'");
+    $select = $pdo->query("SELECT * FROM USUARIO WHERE LOGIN = '" . $login . "' AND SENHA = '" . $senha . "' AND  DELETADO = FALSE;");
 
     $select = $select->fetch();
-    if ($select == false) {
+    if (!$select) {
         return false;
     } else {
         $usuario = new Usuario();

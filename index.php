@@ -16,6 +16,9 @@
       crossorigin="anonymous"
     />
 
+<link rel="stylesheet" type="text/css" href="styleSheet.css">
+
+
     <title>Olá, mundo!</title>
 
     <?php

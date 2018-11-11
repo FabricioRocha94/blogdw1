@@ -1,4 +1,19 @@
 <?php
+
+// A sessão precisa ser iniciada em cada página diferente
+if (!isset($_SESSION)) session_start();
+$admin = true;
+
+      // Verifica se não há a variável da sessão que identifica o usuário
+if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioAdmin'] == !$admin)) {
+      // Destrói a sessão por segurança
+    session_destroy();
+      // Redireciona o visitante de volta pro login
+    header("Location: ../index.php");
+    exit;
+}
+
+
 $dir = $_SERVER['DOCUMENT_ROOT'];
 require_once $dir . "/blogdw1/DAO/postagemDAO.php";
 require_once $dir . "/blogdw1/DAO/usuarioDAO.php";
@@ -14,6 +29,11 @@ if ($action == "post") {
     $id = $_GET["id"];
     deleteUsuario($id);
     header("Location:admin.php");
+} else if ($action == "comment") {
+    $id = $_GET["id"];
+    $idPost = $_GET["post"];
+    deleteComentario($id);
+    header("Location:../index.php?id=" . $idPost);
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
