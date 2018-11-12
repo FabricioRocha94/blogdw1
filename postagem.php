@@ -8,10 +8,11 @@ require_once 'DAO/comentarioDAO.php';
 if (!isset($_SESSION))
     session_start();
 
-function posts()
+function posts($page)
 {
-    $select = readPost();
-    while ($linha = $select->fetch(PDO::FETCH_ASSOC)) {
+
+    $select = readPage($page);
+    while ($linha = $select[0]->fetch(PDO::FETCH_ASSOC)) {
         ?>
     <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
             <div class="card-header bg-light">
@@ -28,9 +29,19 @@ function posts()
                         <b><?= "Autor: ", $autor->getNome(), " - Postado em: ", $linha['DATA'] ?></b>
                     </ul>
             </div>
-    </div>
+    </div>  
             <?php
 
+        }
+
+        $anterior = $page - 1;
+        $proximo = $page + 1;
+        if ($page > 1) {
+            echo "<a href='index.php?page=" . $anterior . "' class='btn btn-primary'>Página Anterior </a>";
+        }
+        echo " - ";
+        if ($page < $select[1]) {
+            echo "<a href='index.php?page=" . $proximo . "' class='btn btn-primary'> Próxima Página</a>";
         }
     }
 

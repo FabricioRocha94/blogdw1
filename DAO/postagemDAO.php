@@ -60,6 +60,27 @@ function readPost()
   return $stmt;
 }
 
+function readPage($pc)
+{
+  $total_reg = "1";
+
+  $inicio = $pc - 1;
+
+  $inicio = $inicio * $total_reg;
+
+  $pdo = conectar();
+
+  $stmt = $pdo->query('SELECT * FROM POSTAGEM WHERE DELETADO = FALSE ORDER BY DATA DESC LIMIT ' . $inicio . ', ' . $total_reg . ';');
+
+  $todos = readPost();
+
+  $tr = $todos->rowCount(); // verifica o número total de registros
+
+  $tp = $tr / $total_reg; // verifica o número total de páginas
+
+  return $array = array($stmt, $tp);
+}
+
 function deletePost($post)
 {
   $pdo = conectar();

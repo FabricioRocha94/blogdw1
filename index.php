@@ -211,7 +211,13 @@
                 } else if (isset($_GET["comment"])) {
                   comentar($_GET["comment"]);
                 } else {
-                  posts();
+                  if (!isset($_GET['page'])) {
+                    $pc = "1";
+                  } else {
+                    $pc = $_GET["page"];
+                  }
+
+                  posts($pc);
                 }
                 ?>
             </div>
