@@ -11,12 +11,12 @@ if (!isset($_SESSION))
 function posts($page)
 {
 
-    $select = readPage($page);
+    $select = readPagePosts($page);
     while ($linha = $select[0]->fetch(PDO::FETCH_ASSOC)) {
         ?>
     <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
             <div class="card-header bg-light">
-                    <h3><b><a href="index.php?id=<?php echo $linha['ID'] ?>" ><?= $linha['TITULO'] ?></a></b></h3>
+                    <h3><b><a href="index.php?id=<?php echo $linha['ID'] ?>&page=<?php echo $page ?>"><?= $linha['TITULO'] ?></a></b></h3>
             </div>
             <div class="card-body bg-light">
                     <ul class="list-unstyled text-white text-muted">
@@ -37,15 +37,14 @@ function posts($page)
         $anterior = $page - 1;
         $proximo = $page + 1;
         if ($page > 1) {
-            echo "<a href='index.php?page=" . $anterior . "' class='btn btn-primary'>Página Anterior </a>";
+            echo "<a href='index.php?page=" . $anterior . "' class='btn btn-primary m-2'><- Página Anterior</a>";
         }
-        echo " - ";
         if ($page < $select[1]) {
-            echo "<a href='index.php?page=" . $proximo . "' class='btn btn-primary'> Próxima Página</a>";
+            echo "<a href='index.php?page=" . $proximo . "' class='btn btn-primary m-2'>Próxima Página -></a>";
         }
     }
 
-    function comentarios($id)
+    function comentarios($id, $page)
     {
         $post = new Post();
         $post = getPost($id);
@@ -77,12 +76,12 @@ function posts($page)
 
         <?php
 
-        $select = readComentarios($id);
+        $select = readPageComents($page, $id);
 
         echo "<br><div class='card bg-light border-light text-center ml-5 mt-3 mb-3'>
                 <h3><b>Comentarios</b></h3></div>";
 
-        while ($linha = $select->fetch(PDO::FETCH_ASSOC)) {
+        while ($linha = $select[0]->fetch(PDO::FETCH_ASSOC)) {
             ?>
         <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
             <div class="card-header bg-light">
@@ -111,6 +110,15 @@ function posts($page)
         </div>
             <?php
 
+        }
+
+        $anterior = $page - 1;
+        $proximo = $page + 1;
+        if ($page > 1) {
+            echo "<a href='index.php?id=" . $id . "&page=" . $anterior . "' class='btn btn-primary m-2'><- Página Anterior</a>";
+        }
+        if ($page < $select[1]) {
+            echo "<a href='index.php?id=" . $id . "&page=" . $proximo . "' class='btn btn-primary m-2'>Próxima Página -></a>";
         }
     }
 

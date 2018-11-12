@@ -71,4 +71,25 @@ function readComentarios($id)
     return $stmt;
 }
 
+function readPageComents($pc, $idPost)
+{
+    $total_reg = "1";
+
+    $inicio = $pc - 1;
+
+    $inicio = $inicio * $total_reg;
+
+    $pdo = conectar();
+
+    $stmt = $pdo->query('SELECT * FROM COMENTARIO WHERE DELETADO = FALSE ORDER BY DATA DESC LIMIT ' . $inicio . ', ' . $total_reg . ';');
+
+    $todos = readComentarios($idPost);
+
+    $tr = $todos->rowCount(); // verifica o número total de registros
+
+    $tp = $tr / $total_reg; // verifica o número total de páginas
+
+    return $array = array($stmt, $tp);
+}
+
 ?>

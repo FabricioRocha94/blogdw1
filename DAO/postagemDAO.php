@@ -60,7 +60,7 @@ function readPost()
   return $stmt;
 }
 
-function readPage($pc)
+function readPagePosts($pc)
 {
   $total_reg = "1";
 

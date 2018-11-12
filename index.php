@@ -205,7 +205,14 @@
                 require_once "cadastro.php";
 
                 if (isset($_GET["id"])) {
-                  comentarios($_GET["id"]);
+
+                  if (!isset($_GET['page'])) {
+                    $pc = "1";
+                  } else {
+                    $pc = $_GET["page"];
+                  }
+
+                  comentarios($_GET["id"], $pc);
                 } else if (isset($_GET["cadastrar"])) {
                   cadastrar();
                 } else if (isset($_GET["comment"])) {
@@ -216,7 +223,6 @@
                   } else {
                     $pc = $_GET["page"];
                   }
-
                   posts($pc);
                 }
                 ?>
