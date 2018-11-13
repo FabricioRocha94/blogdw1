@@ -227,25 +227,7 @@
                 }
                 ?>
             </div>
-          </div>
-
-          <div class="row">
-            <div class="col">
-              <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
-                <div class="card-header bg-light">Título</div>
-                <div class="card-body bg-light">
-                  <ul class="list-unstyled text-white text-muted">
-                    <li class="mb-2">Desenvolvimento</li>
-                    <li>Thon C. Ataide</li>
-                    <li>Rafael Giro</li>
-                    <li>Fabrício Rocha</li>
-                    <li>Jonathan</li>
-                    <li>João Pedro Guimarães</li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </div>
+          </div>          
         </div>
         <div class="col-3 bg-success rounded-left"><p>ksdljk</p></div>
       </div>
