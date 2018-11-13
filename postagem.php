@@ -14,7 +14,7 @@ function posts($page)
     $select = readPagePosts($page);
     while ($linha = $select[0]->fetch(PDO::FETCH_ASSOC)) {
         ?>
-    <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
+    <div class="card bg-dark border-light text-center">
             <div class="card-header bg-light">
                     <h3><b><a href="index.php?id=<?php echo $linha['ID'] ?>&page=<?php echo $page ?>"><?= $linha['TITULO'] ?></a></b></h3>
             </div>
