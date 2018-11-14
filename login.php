@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $_SESSION['UsuarioAdmin'] = $user->getAdmin();
 
         $login = json_encode(array('logado' => true, 'admin' => $_SESSION['UsuarioAdmin'], 'msg' => $msg2));
-        header("Location:index.php");
+        header("Location:index.php?msg2=" . $msg2);
     } else {
         header("Location:index.php?msg=" . $msg);
     }
