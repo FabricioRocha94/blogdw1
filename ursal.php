@@ -8,40 +8,51 @@
       content="width=device-width, initial-scale=1, shrink-to-fit=no"
     />
 
+    <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
       href="public/styles/css/style.css"
     />
 
-    <title>Olá, mundo!</title>
+    <title>Daciblogo</title>
 
     <?php
 
-    if (!isset($_SESSION))
-      session_start();
+    if (!isset($_SESSION)) session_start();
 
     if (isset($_GET["logout"])) {
       require_once "login.php";
+
       logout();
     }
-    ?>
 
-  </head>
-  <body class="bg-white">
-    <div class="container-fluid mt-5 text-center">
-      <img
-        src="Daciolo_Banner.png"
-        class="text-center "
-        alt=""
-        width="70%"
-        height="220px"
-      />
-    </div>
-    <div class="container">
+    ?>
+ </head>
+
+  <body>
+    <?php
+
+    if (isset($_GET["msg"])) {
+      echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg"] . "</div>";
+    }
+
+    if (isset($_GET["msg2"])) {
+      echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg2"] . "</div>";
+    }
+
+    if (isset($_GET["msg3"])) {
+      echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg3"] . "</div>";
+    }
+
+    if (isset($_GET["msg4"])) {
+      echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg4"] . "</div>";
+    }
+
+    ?>
       <nav
-        class="navbar navbar-expand-lg navbar-light bg-light rounded mt-4"
+        class="navbar navbar-expand-lg navbar-dark bg-dark navbar-static-top"
       >
-        <a class="navbar-brand" href="index.php">Home
+        <a class="navbar-brand" href="index.php">Daciblogo
         </a>
         <button
           class="navbar-toggler"
@@ -84,7 +95,8 @@
 
             <li class="nav-item "><a class="nav-link" href="#">Contato</a></li>
 
-            <?php 
+            <?php
+
             if (!isset($_SESSION['UsuarioID'])) {
               session_destroy();
               ?>
@@ -101,8 +113,8 @@
               >
                 Entrar
               </a>
-              <div class="dropdown-menu">
-                <form class="px-4 py-3" method="post" action="login.php">
+              <div id="formLogin" class="dropdown-menu">
+                <form class="px-4 py-3 " method="post" action="login.php">
                   <div class="form-group">
                     <label for="login"
                       >Login</label
@@ -144,16 +156,20 @@
 
             <?php
 
-          } else if (isset($_SESSION['UsuarioID'])) { ?>
+          } else
+            if (isset($_SESSION['UsuarioID'])) {
+            ?>
 
               <li class="nav-item "><a class="nav-link" href="index.php?logout=true">Sair</a></li>
 
-              <?php 
-              if ($_SESSION['UsuarioAdmin'] == 1) { ?>
-                  <li class="nav-item "><a class="nav-link" href="Admin/admin.php">Painel Admin</a></li>
-              <?php 
-            } ?>
+              <?php
+              if ($_SESSION['UsuarioAdmin'] == 1) {
+                ?>
+                <li class="nav-item "><a class="nav-link" href="Admin/admin.php">Painel Admin</a></li>
+              <?php
 
+            }
+            ?>
             <?php
 
           }
@@ -168,36 +184,25 @@
               aria-label="Search"
             />
             <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
-              Search
+              Procurar versículo
             </button>
           </form>
         </div>
-      </nav>
-    </div>
-        <div>
-          <br>
-          <?php
-          if (isset($_GET["msg"])) {
-            echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg"] . "</div>";
-          }
-          if (isset($_GET["msg2"])) {
-            echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg2"] . "</div>";
-          }
-          if (isset($_GET["msg3"])) {
-            echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg3"] . "</div>";
-          }
-          if (isset($_GET["msg4"])) {
-            echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg4"] . "</div>";
-          }
-          ?>
-        </div>
+        </nav>
 
-    <div class="container-fluid mt-4 text-center">
+        <div class="header">
+          <h1 class="header__title">DACIBLOGO</h1>
+        </div>
+    <div class="container-fluid">
       <div class="row">
-        <div class="col-9  ">
-          <div class="row">
-            <div class="col">
-                <h3 class="text-danger"><strong>Estamos falando aqui de um plano de nova ordem mundial. É a União das Repúblicas Socialistas da América Latina, que seria para unir a América do Sul, formando uma única nação. Quero deixar claro que em nosso governo o comunismo não vai ter vez.</strong></h3><br>
+        <div class="col-md-8 mainblog">
+              <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
+        <div class="card-header bg-light">
+          <h3><b>Ursal</b></h3>
+        </div>
+                <div class="card-body bg-light">
+            <ul class="list-unstyled text-white text-muted">
+        <h3 class="text-danger"><strong>Estamos falando aqui de um plano de nova ordem mundial. É a União das Repúblicas Socialistas da América Latina, que seria para unir a América do Sul, formando uma única nação. Quero deixar claro que em nosso governo o comunismo não vai ter vez.</strong></h3><br>
                 <h1><strong>GLÓRIA A DEUXXX</strong></h1><br>
                 <img
                     src="ursal.jpg"
@@ -205,20 +210,36 @@
                 /><br>
                 <h3><strong>Hino da URSAL:</strong><br><br>URSAL, URSAL<br>Nessa terra em novembro já começa o carnaval<br>URSAL, URSAL<br>Você entra no museu, tá rolando bacanal<br>URSAL, URSAL<br>O seu carro, a geladeira, sua alma é estatal<br>URSAL, URSAL<br>George Soros é quem paga pra gente fazer sarau</h3><br>
                 <h1>Vamos juntos <strong class="text-success">nação brasileira</strong><strong>!!!!!</strong> Lutemos a favor da democracia, com a palavra de Deuxxx.</h1>
-                <h1><strong>Com a glória e honra do senhor Jesuixxx!!!</strong></h1>
-            </div>
+                <h1><strong>Com a glória e honra do senhor Jesuixxx!!!</strong></h1>     
+            </ul>
+                </div>
+              </div>
+</div>
+        <div class="col-md-4 sidebar">
+          <div class="anuncio">
+            <img src="public/images/ad1.jpg" alt="anuncio" class="anuncio__image">
+            <h3 class="anuncio__title">A bíblia da constituição</h3>
+            <p class="anuncio__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam doloremque amet blanditiis, fugit itaque fugiat veniam, aliquam adipisci harum, impedit eligendi corporis architecto voluptate quisquam doloribus! Necessitatibus accusantium cupiditate et!</p>
+            <a href="#" class="button button--gold mt-3">COMPRAR</a>
+          </div>
+          <hr >
+          <div class="anuncio">
+            <img src="public/images/monte.jpg" alt="anuncio" class="anuncio__image">
+            <h3 class="anuncio__title">O monte</h3>
+            <p class="anuncio__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam doloremque amet blanditiis, fugit itaque fugiat veniam, aliquam adipisci harum, impedit eligendi corporis architecto voluptate quisquam doloribus! Necessitatibus accusantium cupiditate et!</p>
+            <a href="#" class="button button--gold mt-3">QUERO VISITAR</a>
           </div>
         </div>
-        <div class="col-3 bg-success rounded-left"><p>ksdljk</p></div>
       </div>
     </div>
 
     <div class="container-fluid bg-dark">
-      <div class="container mt-5">
-        <div class="row mt-3">
+      <img class="footer__img" src="public/images/Daciolo_Banner.png" alt="daciolo 51">
+      <div class="container">
+        <div class="row">
           <div class="col">
             <div
-              class="card bg-dark border-dark text-center mt-3 mb-3"
+              class="card bg-dark border-dark text-center mb-3"
               style="width: 18rem;"
             >
               <div class="card-body bg-dark">
@@ -266,6 +287,8 @@
         </div>
       </div>
     </div>
+
+    
     <!-- JavaScript (Opcional) -->
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
     <script

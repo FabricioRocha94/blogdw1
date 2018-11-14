@@ -18,37 +18,37 @@
 
     <?php
 
-if (!isset($_SESSION)) session_start();
+    if (!isset($_SESSION)) session_start();
 
-if (isset($_GET["logout"])) {
-  require_once "login.php";
+    if (isset($_GET["logout"])) {
+      require_once "login.php";
 
-  logout();
-}
+      logout();
+    }
 
-?>
+    ?>
  </head>
 
   <body>
     <?php
 
-if (isset($_GET["msg"])) {
-  echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg"] . "</div>";
-}
+    if (isset($_GET["msg"])) {
+      echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg"] . "</div>";
+    }
 
-if (isset($_GET["msg2"])) {
-  echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg2"] . "</div>";
-}
+    if (isset($_GET["msg2"])) {
+      echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg2"] . "</div>";
+    }
 
-if (isset($_GET["msg3"])) {
-  echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg3"] . "</div>";
-}
+    if (isset($_GET["msg3"])) {
+      echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg3"] . "</div>";
+    }
 
-if (isset($_GET["msg4"])) {
-  echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg4"] . "</div>";
-}
+    if (isset($_GET["msg4"])) {
+      echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg4"] . "</div>";
+    }
 
-?>
+    ?>
       <nav
         class="navbar navbar-expand-lg navbar-dark bg-dark navbar-static-top"
       >
@@ -87,7 +87,7 @@ if (isset($_GET["msg4"])) {
                 Planos illuminati
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#">Ursal</a>
+                <a class="dropdown-item" href="ursal.php">Ursal</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Maçonaria</a>
               </div>
@@ -97,9 +97,9 @@ if (isset($_GET["msg4"])) {
 
             <?php
 
-if (!isset($_SESSION['UsuarioID'])) {
-  session_destroy();
-?>
+            if (!isset($_SESSION['UsuarioID'])) {
+              session_destroy();
+              ?>
 
               <li class="nav-item  dropdown">
               <a
@@ -155,23 +155,25 @@ if (!isset($_SESSION['UsuarioID'])) {
             </li>
 
             <?php
-}
-else
-if (isset($_SESSION['UsuarioID'])) {
-?>
+
+          } else
+            if (isset($_SESSION['UsuarioID'])) {
+            ?>
 
               <li class="nav-item "><a class="nav-link" href="index.php?logout=true">Sair</a></li>
 
               <?php
-  if ($_SESSION['UsuarioAdmin'] == 1) {
-?>
+              if ($_SESSION['UsuarioAdmin'] == 1) {
+                ?>
                 <li class="nav-item "><a class="nav-link" href="Admin/admin.php">Painel Admin</a></li>
               <?php
-  }
-?>
+
+            }
+            ?>
             <?php
-}
-?>
+
+          }
+          ?>
 
           </ul>
           <form class="form-inline my-2 my-lg-0">
@@ -195,40 +197,35 @@ if (isset($_SESSION['UsuarioID'])) {
       <div class="row">
         <div class="col-md-8 mainblog">
           <?php
-          
-require_once "postagem.php";
-require_once "cadastro.php"; 
 
-if (isset($_GET["id"])) {
-  if (!isset($_GET['page'])) {
-    $pc = "1";
-  }
-  else {
-    $pc = $_GET["page"];
-  }
+          require_once "postagem.php";
+          require_once "cadastro.php";
 
-  comentarios($_GET["id"], $pc);
-}
-else
-if (isset($_GET["cadastrar"])) {
-  cadastrar();
-}
-else
-if (isset($_GET["comment"])) {
-  comentar($_GET["comment"]);
-}
-else {
-  if (!isset($_GET['page'])) {
-    $pc = "1";
-  }
-  else {
-    $pc = $_GET["page"];
-  }
+          if (isset($_GET["id"])) {
+            if (!isset($_GET['page'])) {
+              $pc = "1";
+            } else {
+              $pc = $_GET["page"];
+            }
 
-  posts($pc);
-}
+            comentarios($_GET["id"], $pc);
+          } else
+            if (isset($_GET["cadastrar"])) {
+            cadastrar();
+          } else
+            if (isset($_GET["comment"])) {
+            comentar($_GET["comment"]);
+          } else {
+            if (!isset($_GET['page'])) {
+              $pc = "1";
+            } else {
+              $pc = $_GET["page"];
+            }
 
-?>        
+            posts($pc);
+          }
+
+          ?>        
         </div>
         <div class="col-md-4 sidebar">
           <div class="anuncio">
