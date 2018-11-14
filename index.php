@@ -69,7 +69,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-              <a class="nav-link" href="#"
+              <a class="nav-link" href="conheca.php"
                 >Conheça Daciolo<span class="sr-only">(current)</span></a
               >
             </li>

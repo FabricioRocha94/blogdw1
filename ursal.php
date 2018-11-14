@@ -69,7 +69,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-              <a class="nav-link" href="#"
+              <a class="nav-link" href="conheca.php"
                 >Conheça Daciolo<span class="sr-only">(current)</span></a
               >
             </li>
@@ -205,7 +205,7 @@
         <h3 class="text-danger"><strong>Estamos falando aqui de um plano de nova ordem mundial. É a União das Repúblicas Socialistas da América Latina, que seria para unir a América do Sul, formando uma única nação. Quero deixar claro que em nosso governo o comunismo não vai ter vez.</strong></h3><br>
                 <h1><strong>GLÓRIA A DEUXXX</strong></h1><br>
                 <img
-                    src="ursal.jpg"
+                    src="public/images/ursal.jpg"
                     width=500px;
                 /><br>
                 <h3><strong>Hino da URSAL:</strong><br><br>URSAL, URSAL<br>Nessa terra em novembro já começa o carnaval<br>URSAL, URSAL<br>Você entra no museu, tá rolando bacanal<br>URSAL, URSAL<br>O seu carro, a geladeira, sua alma é estatal<br>URSAL, URSAL<br>George Soros é quem paga pra gente fazer sarau</h3><br>
