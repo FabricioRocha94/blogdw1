@@ -1,6 +1,111 @@
+html,
+body {
+  background-color: #f7f6f4 !important; }
+
 @media (min-width: 600px) {
   #formLogin {
     min-width: 25rem; } }
+
+.anuncio {
+  max-width: 80%;
+  margin: 0 auto;
+  text-align: center;
+  color: #c4b998;
+  padding: 2rem 0; }
+  .anuncio__image {
+    max-width: 100%;
+    display: block;
+    margin: 0 auto; }
+  .anuncio__title {
+    font-size: 1.5rem;
+    color: #b59757;
+    text-transform: uppercase;
+    letter-spacing: 0.3rem; }
+
+.button {
+  background-color: #1c2229;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 0.8rem 1.3rem; }
+  .button--gold {
+    background-color: #b59757; }
+
+.post {
+  background-color: rgba(196, 185, 152, 0.3);
+  transform: skewY(-4deg); }
+  .post__content {
+    width: 101%;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 2rem 1rem;
+    margin-bottom: 3rem;
+    transform: skewY(4deg); }
+  .post__title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 200;
+    letter-spacing: 1.3rem; }
+    .post__title a, .post__title:visited {
+      color: #1c2229 !important;
+      text-decoration: none; }
+  .post__text {
+    margin: 2rem 2.5rem;
+    text-transform: capitalize;
+    font-size: 1.3rem;
+    color: #525252; }
+
+.sidebar {
+  z-index: 1;
+  background-color: #1c2229;
+  height: 100%;
+  /* position: fixed;
+  z-index: 1;
+  top: 0;
+  right: 0; */
+  overflow-x: hidden;
+  padding-top: 20px; }
+  @media (min-width: 800px) {
+    .sidebar {
+      padding-top: 10rem !important;
+      transform: translateY(-15rem);
+      margin-bottom: -15rem !important; } }
+
+.mainblog {
+  height: 100%; }
+
+.header {
+  height: 75vh;
+  background-image: linear-gradient(to right, rgba(196, 185, 152, 0.9), rgba(28, 34, 41, 0.9)), url(../../images/header.jpg);
+  filter: grayscale(0%);
+  background-size: cover;
+  position: relative; }
+  @media (min-width: 800px) {
+    .header {
+      clip-path: polygon(0 0, 100% 0, 100% 75%, 0 100%);
+      z-index: 10; } }
+  .header__title {
+    color: #fff;
+    text-transform: uppercase;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -70%);
+    font-size: 2rem;
+    letter-spacing: 1rem;
+    font-weight: 200; }
+    @media (min-width: 800px) {
+      .header__title {
+        font-size: 5.5rem;
+        letter-spacing: 2.5rem; } }
+  .header__cta {
+    text-align: center; }
+
+.alert {
+  z-index: 999 !important;
+  margin-bottom: 0 !important; }
+
+.footer__img {
+  width: 100%;
+  margin-top: 1rem; }
 
 /* Bootstrap */
 /*!

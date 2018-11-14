@@ -1,4 +1,15 @@
+@import 'base/variables';
+@import 'base/global';
+
 @import 'components/formLogin';
+@import 'components/anuncio';
+@import 'components/button';
+@import 'components/post';
+
+@import 'layout/sidebar';
+@import 'layout/mainblog';
+@import 'layout/header';
+@import 'layout/footer';
 
 /* Bootstrap */
 @import 'vendor/bootstrap.scss';

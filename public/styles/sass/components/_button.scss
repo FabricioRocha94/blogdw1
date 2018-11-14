@@ -1,0 +1,10 @@
+.button {
+  background-color: $color-sidebar;
+  color: #fff;
+  text-transform: uppercase;
+  padding: 0.8rem 1.3rem;
+
+  &--gold {
+    background-color: $color-gold;
+  }
+}

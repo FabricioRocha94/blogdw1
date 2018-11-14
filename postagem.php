@@ -14,20 +14,21 @@ function posts($page)
     $select = readPagePosts($page);
     while ($linha = $select[0]->fetch(PDO::FETCH_ASSOC)) {
         ?>
-    <div class="card bg-dark border-light text-center">
-            <div class="card-header bg-light">
-                    <h3><b><a href="index.php?id=<?php echo $linha['ID'] ?>&page=<?php echo $page ?>"><?= $linha['TITULO'] ?></a></b></h3>
-            </div>
-            <div class="card-body bg-light">
-                    <ul class="list-unstyled text-white text-muted">
-                        <?= $linha['TEXTO'] ?>
-                    </ul>
-            </div>
-            <div class="card-footer bg-light">
-                    <ul class="list-unstyled text-white text-muted">
-                        <?php $autor = getUsuario($linha['AUTOR']); ?>
-                        <b><?= "Autor: ", $autor->getNome(), " - Postado em: ", $linha['DATA'] ?></b>
-                    </ul>
+    <div>
+            <div  class="post">
+                <div class="post__content">
+                    <h3 class="post__title"><a href="index.php?id=<?php echo $linha['ID'] ?>&page=<?php echo $page ?>"><?= $linha['TITULO'] ?></h3></a>
+        
+                    <p class="post__text"><?= $linha['TEXTO'] ?></p>
+                    
+                <div>
+                        <ul>
+                            <?php $autor = getUsuario($linha['AUTOR']); ?>
+                            <b><?= "Autor: ", $autor->getNome(), " - Postado em: ", $linha['DATA'] ?></b>
+                        </ul>
+                </div>
+                </div>
+                 
             </div>
     </div>  
             <?php

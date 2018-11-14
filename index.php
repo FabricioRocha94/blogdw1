@@ -30,6 +30,25 @@ if (isset($_GET["logout"])) {
  </head>
 
   <body>
+    <?php
+
+if (isset($_GET["msg"])) {
+  echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg"] . "</div>";
+}
+
+if (isset($_GET["msg2"])) {
+  echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg2"] . "</div>";
+}
+
+if (isset($_GET["msg3"])) {
+  echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg3"] . "</div>";
+}
+
+if (isset($_GET["msg4"])) {
+  echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg4"] . "</div>";
+}
+
+?>
       <nav
         class="navbar navbar-expand-lg navbar-dark bg-dark navbar-static-top"
       >
@@ -168,32 +187,17 @@ if (isset($_SESSION['UsuarioID'])) {
           </form>
         </div>
         </nav>
-          <?php
 
-if (isset($_GET["msg"])) {
-  echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg"] . "</div>";
-}
-
-if (isset($_GET["msg2"])) {
-  echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg2"] . "</div>";
-}
-
-if (isset($_GET["msg3"])) {
-  echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg3"] . "</div>";
-}
-
-if (isset($_GET["msg4"])) {
-  echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg4"] . "</div>";
-}
-
-?>
+        <div class="header">
+          <h1 class="header__title">DACIBLOGO</h1>
+        </div>
     <div class="container-fluid">
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 mainblog">
           <?php
+          
 require_once "postagem.php";
-
-require_once "cadastro.php";
+require_once "cadastro.php"; 
 
 if (isset($_GET["id"])) {
   if (!isset($_GET['page'])) {
@@ -226,16 +230,31 @@ else {
 
 ?>        
         </div>
-        <div class="col-md-4">.col-md-4</div>
+        <div class="col-md-4 sidebar">
+          <div class="anuncio">
+            <img src="public/images/ad1.jpg" alt="anuncio" class="anuncio__image">
+            <h3 class="anuncio__title">A bíblia da constituição</h3>
+            <p class="anuncio__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam doloremque amet blanditiis, fugit itaque fugiat veniam, aliquam adipisci harum, impedit eligendi corporis architecto voluptate quisquam doloribus! Necessitatibus accusantium cupiditate et!</p>
+            <a href="#" class="button button--gold mt-3">COMPRAR</a>
+          </div>
+          <hr >
+          <div class="anuncio">
+            <img src="public/images/monte.jpg" alt="anuncio" class="anuncio__image">
+            <h3 class="anuncio__title">O monte</h3>
+            <p class="anuncio__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam doloremque amet blanditiis, fugit itaque fugiat veniam, aliquam adipisci harum, impedit eligendi corporis architecto voluptate quisquam doloribus! Necessitatibus accusantium cupiditate et!</p>
+            <a href="#" class="button button--gold mt-3">QUERO VISITAR</a>
+          </div>
+        </div>
       </div>
     </div>
 
     <div class="container-fluid bg-dark">
-      <div class="container mt-5">
-        <div class="row mt-3">
+      <img class="footer__img" src="public/images/Daciolo_Banner.png" alt="daciolo 51">
+      <div class="container">
+        <div class="row">
           <div class="col">
             <div
-              class="card bg-dark border-dark text-center mt-3 mb-3"
+              class="card bg-dark border-dark text-center mb-3"
               style="width: 18rem;"
             >
               <div class="card-body bg-dark">
@@ -283,6 +302,8 @@ else {
         </div>
       </div>
     </div>
+
+    
     <!-- JavaScript (Opcional) -->
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
     <script
