@@ -37,12 +37,17 @@ function posts($page)
 
         $anterior = $page - 1;
         $proximo = $page + 1;
+        echo "<div class='text-center'>";
         if ($page > 1) {
             echo "<a href='index.php?page=" . $anterior . "' class='btn btn-primary m-2'><- Página Anterior</a>";
         }
+
+        echo "<button type='button' class='btn btn-danger'>" . $page . "</button>";
+
         if ($page < $select[1]) {
             echo "<a href='index.php?page=" . $proximo . "' class='btn btn-primary m-2'>Próxima Página -></a>";
         }
+        echo "</div>";
     }
 
     function comentarios($id, $page)
@@ -116,12 +121,17 @@ function posts($page)
 
         $anterior = $page - 1;
         $proximo = $page + 1;
+        echo "<div class='text-center'>";
         if ($page > 1) {
             echo "<a href='index.php?id=" . $id . "&page=" . $anterior . "' class='btn btn-primary m-2'><- Página Anterior</a>";
         }
+
+        echo "<button type='button' class='btn btn-danger'>" . $page . "</button>";
+
         if ($page < $select[1]) {
             echo "<a href='index.php?id=" . $id . "&page=" . $proximo . "' class='btn btn-primary m-2'>Próxima Página -></a>";
         }
+        echo "</div>";
     }
 
     function comentar($idPostagem)

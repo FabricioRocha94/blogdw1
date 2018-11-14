@@ -73,7 +73,7 @@ function readComentarios($id)
 
 function readPageComents($pc, $idPost)
 {
-    $total_reg = "1";
+    $total_reg = "3";
 
     $inicio = $pc - 1;
 
