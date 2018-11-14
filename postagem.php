@@ -50,29 +50,30 @@ function posts($page)
         $post = new Post();
         $post = getPost($id);
         ?>
-    <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
-        <div class="card-header bg-light">
-                    <h3><b><?= $post->getTitulo() ?></b></h3>
-        </div>
-        <div class="card-body bg-light">
-            <ul class="list-unstyled text-white text-muted">
-                <?= $post->getTexto() ?>
-            </ul>
-        </div>
-        <div class="card-footer bg-light">
-            <ul class="list-unstyled text-white text-muted">
-                 <?php $autor = getUsuario($post->getAutor()); ?>
-                 <b><?= "Autor: ", $autor->getNome(), " - Postado em: ", $post->getData() ?></b>
-                    </ul>
-            <?php 
-            if (isset($_SESSION['UsuarioID'])) { ?>
-                <a href="index.php?comment=<?= $post->getId() ?>" class="btn btn-primary">Comentar</a>
-                <?php
+    <div class="card bg-dark border-light text-center post">
+        <div class="post__content post__content--nomg">
+            <div class="">
+                    <h3 class="post__title"><b><?= $post->getTitulo() ?></b></h3>
+            </div>
+            <div class="">
+                <ul class="post__text post__text--single">
+                    <?= $post->getTexto() ?>
+                </ul>
+            </div>
+            <div class="">
+                <ul class="list-unstyled text-white text-muted">
+                    <?php $autor = getUsuario($post->getAutor()); ?>
+                    <b><?= "Autor: ", $autor->getNome(), " - Postado em: ", $post->getData() ?></b>
+                        </ul>
+                <?php 
+                if (isset($_SESSION['UsuarioID'])) { ?>
+                    <a href="index.php?comment=<?= $post->getId() ?>" class="btn btn-primary">Comentar</a>
+                    <?php
 
-            }
-            ?>
+                }
+                ?>
+            </div>
         </div>
-        
     </div>
 
         <?php

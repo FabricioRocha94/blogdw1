@@ -8,6 +8,10 @@
     padding: 2rem 1rem;
     margin-bottom: 3rem;
     transform: skewY(4deg);
+
+    &--nomg {
+      margin-bottom: 0;
+    }
   }
 
   &__title {
@@ -28,5 +32,10 @@
     text-transform: capitalize;
     font-size: 1.3rem;
     color: rgb(82, 82, 82);
+
+    &--single {
+      font-size: 1.6rem;
+      line-height: 150%;
+    }
   }
 }

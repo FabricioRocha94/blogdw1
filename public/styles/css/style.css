@@ -39,6 +39,8 @@ body {
     padding: 2rem 1rem;
     margin-bottom: 3rem;
     transform: skewY(4deg); }
+    .post__content--nomg {
+      margin-bottom: 0; }
   .post__title {
     text-align: center;
     font-size: 3rem;
@@ -52,6 +54,9 @@ body {
     text-transform: capitalize;
     font-size: 1.3rem;
     color: #525252; }
+    .post__text--single {
+      font-size: 1.6rem;
+      line-height: 150%; }
 
 .sidebar {
   z-index: 1;
