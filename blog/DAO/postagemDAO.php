@@ -1,7 +1,7 @@
 <?php
 $dir = $_SERVER['DOCUMENT_ROOT'];
 require_once 'dataBase.php';
-require_once $dir . '/blogdw1/Model/post.php';
+require_once $dir . '/blogdw1/blog/Model/post.php';
 
 function insertPost($post)
 {

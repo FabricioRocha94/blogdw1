@@ -1,7 +1,7 @@
 <?php
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dir = $_SERVER['DOCUMENT_ROOT'];
-    require_once $dir . "/blogdw1/DAO/usuarioDAO.php";
+    require_once $dir . "/blogdw1/blog/DAO/usuarioDAO.php";
     $msg4 = "Cadastrado com sucesso!";
 
     $user = new Usuario();

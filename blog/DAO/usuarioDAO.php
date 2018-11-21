@@ -2,7 +2,7 @@
 
 $dir = $_SERVER['DOCUMENT_ROOT'];
 require_once 'dataBase.php';
-require_once $dir . '/blogdw1/Model/usuario.php';
+require_once $dir . '/blogdw1/blog/Model/usuario.php';
 
 function insertUsuario($usuario)
 {

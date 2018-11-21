@@ -1,7 +1,7 @@
 <?php
 $dir = $_SERVER['DOCUMENT_ROOT'];
 require_once 'dataBase.php';
-require_once $dir . '/blogdw1/Model/comentario.php';
+require_once $dir . '/blogdw1/blog/Model/comentario.php';
 
 function insertComentario($comment)
 {

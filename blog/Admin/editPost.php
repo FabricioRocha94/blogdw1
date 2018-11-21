@@ -14,8 +14,8 @@
 <?php
 
 $dir = $_SERVER['DOCUMENT_ROOT'];
-require_once $dir . "/blogdw1/DAO/postagemDAO.php";
-require_once $dir . "/blogdw1/DAO/usuarioDAO.php";
+require_once $dir . "/blogdw1/blog/DAO/postagemDAO.php";
+require_once $dir . "/blogdw1/blog/DAO/usuarioDAO.php";
 
 $post = new Post();
 $post = getPost($_GET["id"]);

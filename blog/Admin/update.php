@@ -14,10 +14,10 @@ if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioAdmin'] == !$admin)) {
 }
 
 $dir = $_SERVER['DOCUMENT_ROOT'];
-require_once $dir . "/blogdw1/DAO/postagemDAO.php";
-require_once $dir . "/blogdw1/DAO/usuarioDAO.php";
-require_once $dir . "/blogdw1/Model/post.php";
-require_once $dir . "/blogdw1/Model/usuario.php";
+require_once $dir . "/blogdw1/blog/DAO/postagemDAO.php";
+require_once $dir . "/blogdw1/blog/DAO/usuarioDAO.php";
+require_once $dir . "/blogdw1/blog/Model/post.php";
+require_once $dir . "/blogdw1/blog/Model/usuario.php";
 
 $action = $_GET["acao"];
 

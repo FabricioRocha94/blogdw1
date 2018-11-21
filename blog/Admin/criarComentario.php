@@ -5,8 +5,8 @@ if (!isset($_SESSION))
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $dir = $_SERVER['DOCUMENT_ROOT'];
-    require_once $dir . "/blogdw1/DAO/comentarioDAO.php";
-    require_once $dir . "/blogdw1/Model/comentario.php";
+    require_once $dir . "/blogdw1/blog/DAO/comentarioDAO.php";
+    require_once $dir . "/blogdw1/blog/Model/comentario.php";
 
     $comment = new Comentario();
     $comment->setAutor($_SESSION['UsuarioID']);

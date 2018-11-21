@@ -42,9 +42,9 @@ if (isset($_GET["acao"])) {
 
   $dir = $_SERVER['DOCUMENT_ROOT'];
 
-  require_once $dir . '/blogdw1/DAO/postagemDAO.php';
-  require_once $dir . '/blogdw1/DAO/usuarioDAO.php';
-  require_once $dir . '/blogdw1/Model/usuario.php';
+  require_once $dir . '/blogdw1/blog/DAO/postagemDAO.php';
+  require_once $dir . '/blogdw1/blog/DAO/usuarioDAO.php';
+  require_once $dir . '/blogdw1/blog/Model/usuario.php';
 
   if ($acao == "posts") {
     echo "<h3>Gerênciar Postagens</h3>";
