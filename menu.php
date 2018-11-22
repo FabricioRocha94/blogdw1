@@ -8,8 +8,9 @@
       logout();
     }
     ?>
+    <div class="fixed-top">
       <nav
-        class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
+        class="navbar navbar-expand-lg navbar-dark bg-dark"
       >
         <a class="navbar-brand" href="index.php">Daciblogo
         </a>
@@ -148,3 +149,21 @@
           </form>
         </div>
         </nav>
+                                <?php 
+                                if (isset($_GET["msg"])) {
+                                  echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg"] . "</div>";
+                                }
+
+                                if (isset($_GET["msg2"])) {
+                                  echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg2"] . "</div>";
+                                }
+
+                                if (isset($_GET["msg3"])) {
+                                  echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg3"] . "</div>";
+                                }
+
+                                if (isset($_GET["msg4"])) {
+                                  echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg4"] . "</div>";
+                                }
+                                ?>
+  </div>

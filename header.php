@@ -26,21 +26,6 @@
       logout();
     }
 
-    if (isset($_GET["msg"])) {
-      echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg"] . "</div>";
-    }
-
-    if (isset($_GET["msg2"])) {
-      echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg2"] . "</div>";
-    }
-
-    if (isset($_GET["msg3"])) {
-      echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg3"] . "</div>";
-    }
-
-    if (isset($_GET["msg4"])) {
-      echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg4"] . "</div>";
-    }
     ?>
 
  </head>
