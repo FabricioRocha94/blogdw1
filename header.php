@@ -1,3 +1,7 @@
+<?php
+$dir = $_SERVER['DOCUMENT_ROOT'];
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
   <head>
@@ -11,7 +15,7 @@
     <!-- Bootstrap CSS -->
     <link
       rel="stylesheet"
-      href="public/styles/css/style.css"
+      href="<? $dir ?>/blogdw1/blog/public/styles/css/style.css"
     />
 
     <title>Daciblogo</title>

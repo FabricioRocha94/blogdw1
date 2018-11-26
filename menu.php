@@ -1,9 +1,10 @@
     <?php
+    $dir = $_SERVER['DOCUMENT_ROOT'];
 
     if (!isset($_SESSION)) session_start();
 
     if (isset($_GET["logout"])) {
-      require_once "login.php";
+      require_once $dir . "/blogdw1/blog/login.php";
 
       logout();
     }
@@ -12,7 +13,7 @@
       <nav
         class="navbar navbar-expand-lg navbar-dark bg-dark"
       >
-        <a class="navbar-brand" href="index.php">Daciblogo
+        <a class="navbar-brand" href="<? $dir ?>/blogdw1/index.php">Daciblogo
         </a>
         <button
           class="navbar-toggler"
@@ -54,6 +55,7 @@
             </li>
 
             <li class="nav-item "><a class="nav-link" href="#">Contato</a></li>
+            <li class="nav-item "><a class="nav-link" href="<? $dir ?>/blogdw1/blog/index.php">Blog</a></li>
 
             <?php
 
@@ -74,7 +76,7 @@
                 Entrar
               </a>
               <div id="formLogin" class="dropdown-menu">
-                <form class="px-4 py-3 " method="post" action="login.php">
+                <form class="px-4 py-3 " method="post" action="<? $dir ?>/blogdw1/blog/login.php">
                   <div class="form-group">
                     <label for="login"
                       >Login</label
@@ -108,7 +110,7 @@
                   <button type="submit" class="btn btn-primary">Entrar</button>
                 </form>
                 <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="index.php?cadastrar=true"
+                <a class="dropdown-item" href="<? $dir ?>/blogdw1/blog/index.php?cadastrar=true"
                   >Cadastrar</a
                 >
               </div>
@@ -120,12 +122,12 @@
             if (isset($_SESSION['UsuarioID'])) {
             ?>
 
-              <li class="nav-item "><a class="nav-link" href="index.php?logout=true">Sair</a></li>
+              <li class="nav-item "><a class="nav-link" href="<? $dir ?>/blogdw1/index.php?logout=true">Sair</a></li>
 
               <?php
               if ($_SESSION['UsuarioAdmin'] == 1) {
                 ?>
-                <li class="nav-item "><a class="nav-link" href="Admin/admin.php">Painel Admin</a></li>
+                <li class="nav-item "><a class="nav-link" href="<? $dir ?>/blogdw1/blog/Admin/admin.php">Painel Admin</a></li>
               <?php
 
             }
@@ -151,19 +153,23 @@
         </nav>
                                 <?php 
                                 if (isset($_GET["msg"])) {
-                                  echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg"] . "</div>";
+                                  echo "<div class='alert alert-danger text-center alert-dismissible fade show' role='alert'>" . $_GET["msg"];
+                                  echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" . "</div>";
                                 }
 
                                 if (isset($_GET["msg2"])) {
-                                  echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg2"] . "</div>";
+                                  echo "<div class='alert alert-primary text-center alert-dismissible fade show' role='alert'>" . $_GET["msg2"];
+                                  echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" . "</div>";
                                 }
 
                                 if (isset($_GET["msg3"])) {
-                                  echo "<div class='alert alert-danger text-center' role='alert'>" . $_GET["msg3"] . "</div>";
+                                  echo "<div class='alert alert-danger text-center alert-dismissible fade show' role='alert'>" . $_GET["msg3"];
+                                  echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" . "</div>";
                                 }
 
                                 if (isset($_GET["msg4"])) {
-                                  echo "<div class='alert alert-primary text-center' role='alert'>" . $_GET["msg4"] . "</div>";
+                                  echo "<div class='alert alert-primary text-center alert-dismissible fade show' role='alert'>" . $_GET["msg4"];
+                                  echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" . "</div>";
                                 }
                                 ?>
   </div>

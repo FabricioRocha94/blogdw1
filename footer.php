@@ -1,14 +1,17 @@
-        </div>
+<?php
+$dir = $_SERVER['DOCUMENT_ROOT'];
+?>
+</div>
         <div class="col-md-4 sidebar">
           <div class="anuncio">
-            <img src="public/images/ad1.jpg" alt="anuncio" class="anuncio__image">
+            <img src="<? $dir ?>/blogdw1/blog/public/images/daciolo.jpg" alt="anuncio" class="anuncio__image">
             <h3 class="anuncio__title">A bíblia da constituição</h3>
             <p class="anuncio__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam doloremque amet blanditiis, fugit itaque fugiat veniam, aliquam adipisci harum, impedit eligendi corporis architecto voluptate quisquam doloribus! Necessitatibus accusantium cupiditate et!</p>
             <a href="#" class="button button--gold mt-3">COMPRAR</a>
           </div>
           <hr >
           <div class="anuncio">
-            <img src="public/images/monte.jpg" alt="anuncio" class="anuncio__image">
+            <img src="<? $dir ?>/blogdw1/blog/public/images/monte.jpg" alt="anuncio" class="anuncio__image">
             <h3 class="anuncio__title">O monte</h3>
             <p class="anuncio__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam doloremque amet blanditiis, fugit itaque fugiat veniam, aliquam adipisci harum, impedit eligendi corporis architecto voluptate quisquam doloribus! Necessitatibus accusantium cupiditate et!</p>
             <a href="#" class="button button--gold mt-3">QUERO VISITAR</a>
@@ -18,7 +21,7 @@
     </div>
 
     <div class="container-fluid bg-dark">
-      <img class="footer__img" src="public/images/Daciolo_Banner.png" alt="daciolo 51">
+      <img class="footer__img" src="<? $dir ?>/blogdw1/blog/public/images/Daciolo_Banner.png" alt="daciolo 51">
       <div class="container">
         <div class="row">
           <div class="col">
