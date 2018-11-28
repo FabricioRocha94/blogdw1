@@ -7,7 +7,7 @@ function cadastrar()
 
 <div class="card bg-white border-light text-center ml-5 mt-3 mb-3">
       <h4>Cadastro de Usuario</h4>
-<form method="post" action="Admin/cadastrarUsuario.php" class="p-5">
+<form method="post" action="Admin/gerenciarUsuario.php?action=create" class="p-5">
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="validationDefault02">Nome</label>

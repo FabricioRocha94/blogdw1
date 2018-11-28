@@ -71,6 +71,15 @@ function readComentarios($id)
     return $stmt;
 }
 
+function readUserComentarios($id)
+{
+    $pdo = conectar();
+
+    $stmt = $pdo->query('SELECT * FROM COMENTARIO WHERE AUTOR = ' . $id . ' AND DELETADO = FALSE;');
+
+    return $stmt;
+}
+
 function readPageComents($pc, $idPost)
 {
     $total_reg = "3";
@@ -84,6 +93,28 @@ function readPageComents($pc, $idPost)
     $stmt = $pdo->query('SELECT * FROM COMENTARIO WHERE DELETADO = FALSE ORDER BY DATA DESC LIMIT ' . $inicio . ', ' . $total_reg . ';');
 
     $todos = readComentarios($idPost);
+
+    $tr = $todos->rowCount(); // verifica o número total de registros
+
+    $tp = $tr / $total_reg; // verifica o número total de páginas
+
+    return $array = array($stmt, $tp);
+}
+
+function readComentsUserPage($pc, $user)
+{
+    if (!isset($_SESSION)) session_start();
+    $total_reg = "3";
+
+    $inicio = $pc - 1;
+
+    $inicio = $inicio * $total_reg;
+
+    $pdo = conectar();
+
+    $stmt = $pdo->query('SELECT * FROM COMENTARIO WHERE AUTOR = ' . $user->getId() . ' AND DELETADO = FALSE ORDER BY DATA DESC LIMIT ' . $inicio . ', ' . $total_reg . ';');
+
+    $todos = readUserComentarios($user->getId());
 
     $tr = $todos->rowCount(); // verifica o número total de registros
 

@@ -30,8 +30,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
             <li class="nav-item ">
-              <a class="nav-link" href="conheca.php"
-                >Conheça Daciolo<span class="sr-only">(current)</span></a
+              <a class="nav-link" href="<? $dir ?>/blogdw1/conheca.php">Conheça Daciolo<span class="sr-only">(current)</span></a
               >
             </li>
             <li class="nav-item"><a class="nav-link" href="#"></a></li>
@@ -48,7 +47,7 @@
                 Planos illuminati
               </a>
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="ursal.php">Ursal</a>
+                <a class="dropdown-item" href="<? $dir ?>/blogdw1/ursal.php">Ursal</a>
                 <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#">Maçonaria</a>
               </div>
@@ -130,6 +129,11 @@
                 <li class="nav-item "><a class="nav-link" href="<? $dir ?>/blogdw1/blog/Admin/admin.php">Painel Admin</a></li>
               <?php
 
+            } else {
+              ?>
+                <li class="nav-item "><a class="nav-link" href="<? $dir ?>/blogdw1/blog/perfil.php">Perfil</a></li>
+              <?php
+
             }
             ?>
             <?php
@@ -171,5 +175,12 @@
                                   echo "<div class='alert alert-primary text-center alert-dismissible fade show' role='alert'>" . $_GET["msg4"];
                                   echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" . "</div>";
                                 }
+
+                                if (isset($_GET["msg5"])) {
+                                  echo "<div class='alert alert-primary text-center alert-dismissible fade show' role='alert'>" . $_GET["msg5"];
+                                  echo "<button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>" . "</div>";
+                                }
                                 ?>
+
+                                
   </div>

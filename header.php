@@ -18,7 +18,7 @@ $dir = $_SERVER['DOCUMENT_ROOT'];
       href="<? $dir ?>/blogdw1/blog/public/styles/css/style.css"
     />
 
-    <title>Daciblogo</title>
+    <title>Daciolo</title>
 
     <?php
 
