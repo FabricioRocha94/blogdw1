@@ -2,6 +2,7 @@
 <?php $dir = $_SERVER['DOCUMENT_ROOT'];
 
 require_once $dir . '/blogdw1/menu.php';
+require_once $dir . '/blogdw1/eventos/eventos.php';
 ?>   
 
   <head>
@@ -12,7 +13,7 @@ require_once $dir . '/blogdw1/menu.php';
       /* Always set the map height explicitly to define the size of the div
        * element that contains the map. */
       #map {
-        height: 100%;
+        height: 70%;
       }
       /* Optional: Makes the sample page fill the window. */
       html, body {
@@ -26,7 +27,8 @@ require_once $dir . '/blogdw1/menu.php';
 
   </head>
 
-  <body>
+  <body class="mt-5">
+    <div class="container-fluid">
     <div id="map"></div>
 
     <script>
@@ -80,8 +82,12 @@ require_once $dir . '/blogdw1/menu.php';
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFb8CnrvzP5fUygHOdUkp1BZVhpotSB1E&callback=initMap">
     </script>
-  </body>
-</html>
+    </div>
+
+
+    <div class="container">
+      <?php listEventos(); ?>
+    </div>
 
     <div class="container-fluid bg-dark">
       <div class="container">
