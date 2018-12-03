@@ -85,8 +85,15 @@ require_once $dir . '/blogdw1/eventos/eventos.php';
     </div>
 
 
-    <div class="container">
-      <?php listEventos(); ?>
+    <div class="container">    
+      <?php 
+      $pc;
+      if (!isset($_GET['page'])) {
+        $pc = "1";
+      } else {
+        $pc = $_GET["page"];
+      }
+      listEventos($pc); ?>
     </div>
 
     <div class="container-fluid bg-dark">

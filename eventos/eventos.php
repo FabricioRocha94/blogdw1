@@ -1,25 +1,30 @@
 <?php
 
+$dir = $_SERVER['DOCUMENT_ROOT'];
+require_once $dir . '/blogdw1/eventos/DAO/eventoDAO.php';
+
 if (!isset($_SESSION))
     session_start();
+
 
 function listEventos($page)
 {
 
     $select = readPageEventos($page);
+
     while ($linha = $select[0]->fetch(PDO::FETCH_ASSOC)) {
         ?>
         <div class="card text-center">
             <div class="card-header">
-                <?= $linha['TITULO'] ?>
+                <?= $linha['NOME'] ?>
             </div>
             <div class="card-body">
-                <h5 class="card-title"><?= $linha['ENDERECO'] ?></h5>
+                <h5 class="card-title">Local: <?= $linha['ADDRESS'] ?></h5>
                 <p class="card-text"><?= $linha['DESCRICAO'] ?></p>
-                <a href="#" class="btn btn-primary">Saiba Mais</a>
+                <a href="#" class="btn btn-primary">Confirmar Presença</a>
             </div>
             <div class="card-footer text-muted">
-                <?= $linha['DATA'] ?>
+                Data: <?= $linha['DATA'] ?>
             </div>
         </div>
             <?php

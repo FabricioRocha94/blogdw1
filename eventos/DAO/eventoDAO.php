@@ -12,15 +12,24 @@ function readPageEventos($pc)
 
     $pdo = conectar();
 
-    $stmt = $pdo->query('SELECT * FROM POSTAGEM WHERE DELETADO = FALSE ORDER BY DATA DESC LIMIT ' . $inicio . ', ' . $total_reg . ';');
+    $stmt = $pdo->query('SELECT E.*, LE.ADDRESS FROM (EVENTO E JOIN LOCALEVENTO LE ON E.ENDERECO = LE.ID) WHERE E.DELETADO = FALSE ORDER BY E.DATA DESC LIMIT ' . $inicio . ', ' . $total_reg . ';');
 
-    $todos = readPost();
+    $todos = readEventos();
 
     $tr = $todos->rowCount(); // verifica o número total de registros
 
     $tp = $tr / $total_reg; // verifica o número total de páginas
 
     return $array = array($stmt, $tp);
+}
+
+function readEventos()
+{
+    $pdo = conectar();
+
+    $stmt = $pdo->query('SELECT * FROM EVENTO WHERE DELETADO = FALSE ORDER BY DATA DESC;');
+
+    return $stmt;
 }
 
 ?>
