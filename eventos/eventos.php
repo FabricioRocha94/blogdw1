@@ -46,4 +46,20 @@ function listEventos($page)
         echo "</div>";
     }
 
+    function popularMapa()
+    {
+
+        $select = readLocalEventos();
+
+        while ($linha = $select->fetch(PDO::FETCH_ASSOC)) {
+            echo "var ponto = new google.maps.LatLng(" . $linha['LAT'] . "," . $linha['LNG'] . ");
+            var marker = new google.maps.Marker({
+                position: ponto,
+                map: map,//Objeto mapa
+                title:'" . $linha['NOME'] . "'
+        });";
+
+        }
+    }
+
     ?>

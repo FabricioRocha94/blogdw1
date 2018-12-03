@@ -43,23 +43,16 @@ require_once $dir . '/blogdw1/eventos/eventos.php';
 
         function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(-34.397, 150.644),
+          center: new google.maps.LatLng(-22.0185361, -47.9310767),
           zoom: 12
         });
         var infoWindow = new google.maps.InfoWindow;
 
-          // Change this depending on the name of your PHP or XML file
-        
-        var ponto = new google.maps.LatLng(-25.363882,131.044922);
-        var marker = new google.maps.Marker({
-            position: ponto,//seta posição
-            map: map,//Objeto mapa
-            title:"Hello World!"//string que será exibida quando passar o mouse no marker
-            //icon: caminho_da_imagem
-        });
+          // Change this depending on the name of your PHP or XML file  
+          <?php 
+          popularMapa();
+          ?>
         }
-
-
 
       function downloadUrl(url, callback) {
         var request = window.ActiveXObject ?

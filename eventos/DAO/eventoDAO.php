@@ -32,4 +32,13 @@ function readEventos()
     return $stmt;
 }
 
+function readLocalEventos()
+{
+    $pdo = conectar();
+
+    $stmt = $pdo->query('SELECT LE.*, E.NOME FROM (LOCALEVENTO LE JOIN EVENTO E ON E.ENDERECO = LE.ID) WHERE E.DELETADO = FALSE ORDER BY E.DATA DESC;');
+
+    return $stmt;
+}
+
 ?>
