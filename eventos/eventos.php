@@ -9,11 +9,14 @@ if (!isset($_SESSION))
 
 function listEventos($page)
 {
-
     $select = readPageEventos($page);
 
     while ($linha = $select[0]->fetch(PDO::FETCH_ASSOC)) {
+        if (isset($_SESSION['UsuarioID'])) {
+            $presenca = verificaPresenca($linha['ID']);
+        }
         ?>
+        <br>
         <div class="card text-center">
             <div class="card-header">
                 <?= $linha['NOME'] ?>
@@ -21,7 +24,17 @@ function listEventos($page)
             <div class="card-body">
                 <h5 class="card-title">Local: <?= $linha['ADDRESS'] ?></h5>
                 <p class="card-text"><?= $linha['DESCRICAO'] ?></p>
-                <a href="#" class="btn btn-primary">Confirmar Presença</a>
+                <?php
+                if (isset($_SESSION['UsuarioID'])) {
+                    if ($presenca->fetch(PDO::FETCH_ASSOC) == false) {
+                        echo "<a href='/blogdw1/eventos/index.php?confirmar=" . $linha['ID'] . "' class='btn btn-primary'>Confirmar Presença</a>";
+                    } else {
+                        echo "<a href='/blogdw1/eventos/index.php?remover=" . $linha['ID'] . "' class='btn btn-danger'>Remover Presença</a>";
+                    }
+                } else {
+                    echo "<a href='#' class='btn disabled btn-primary'>Confirmar Presença</a>";
+                }
+                ?>
             </div>
             <div class="card-footer text-muted">
                 Data: <?= $linha['DATA'] ?>
@@ -33,7 +46,7 @@ function listEventos($page)
 
         $anterior = $page - 1;
         $proximo = $page + 1;
-        echo "<div class='text-center'>";
+        echo "<br><div class='text-center'>";
         if ($page > 1) {
             echo "<a href='index.php?page=" . $anterior . "' class='btn btn-primary m-2'><- Página Anterior</a>";
         }
@@ -43,7 +56,7 @@ function listEventos($page)
         if ($page < $select[1]) {
             echo "<a href='index.php?page=" . $proximo . "' class='btn btn-primary m-2'>Próxima Página -></a>";
         }
-        echo "</div>";
+        echo "</div><br>";
     }
 
     function popularMapa()
@@ -56,10 +69,23 @@ function listEventos($page)
             var marker = new google.maps.Marker({
                 position: ponto,
                 map: map,//Objeto mapa
+                clicklable: true,
                 title:'" . $linha['NOME'] . "'
         });";
 
         }
+    }
+
+    function confirmarPresenca($idEvento)
+    {
+        criarPresenca($idEvento);
+        header("Location:index.php");
+    }
+
+    function removerPresenca($idEvento)
+    {
+        deletarPresenca($idEvento);
+        header("Location:index.php");
     }
 
     ?>

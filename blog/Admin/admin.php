@@ -31,6 +31,7 @@
   </a>
   <a href="admin.php?acao=posts" class="list-group-item list-group-item-action">Gerenciar Postagens</a>
   <a href="admin.php?acao=users" class="list-group-item list-group-item-action">Gerenciar Usuarios</a>
+  <a href="admin.php?acao=eventos" class="list-group-item list-group-item-action">Gerenciar Eventos</a>
   <a href="../index.php" class="list-group-item list-group-item-action">Voltar</a>
 </div>
 <br>
@@ -44,6 +45,7 @@ if (isset($_GET["acao"])) {
 
   require_once $dir . '/blogdw1/blog/DAO/postagemDAO.php';
   require_once $dir . '/blogdw1/blog/DAO/usuarioDAO.php';
+  require_once $dir . '/blogdw1/eventos/DAO/eventoDAO.php';
   require_once $dir . '/blogdw1/blog/Model/usuario.php';
 
   if ($acao == "posts") {
@@ -80,6 +82,28 @@ if (isset($_GET["acao"])) {
                   <small><?= "Login: ", $linha['LOGIN'] ?></small>
                 </div>
                 <small><?= "Telefone: ", $linha['TELEFONE'] ?></small>
+              </a>
+              </a>
+              <br>
+            </div>
+            <?php
+
+          }
+        } else if ($acao == "eventos") {
+          echo "<h3>Gerênciar Eventos</h3>";
+          $select = readEventos();
+
+          echo "<a href='criarEvento.php' class='btn btn-danger m-2 mb-4'>Criar Evento</a>";
+
+          while ($linha = $select->fetch(PDO::FETCH_ASSOC)) {
+            ?>
+            <div class="list-group">
+              <a href="editEvento.php?id=<?= $linha['ID'] ?>" class="list-group-item list-group-item-action flex-column align-items-start active">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1"><?= $linha['NOME'] ?></h5>
+                  <small><?= "Data: ", $linha['DATA'] ?></small>
+                </div>
+                <small><?= "Descrição: ", $linha['DESCRICAO'] ?></small>
               </a>
               </a>
               <br>

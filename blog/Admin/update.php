@@ -16,8 +16,10 @@ if (!isset($_SESSION['UsuarioID']) or ($_SESSION['UsuarioAdmin'] == !$admin)) {
 $dir = $_SERVER['DOCUMENT_ROOT'];
 require_once $dir . "/blogdw1/blog/DAO/postagemDAO.php";
 require_once $dir . "/blogdw1/blog/DAO/usuarioDAO.php";
+require_once $dir . "/blogdw1/eventos/DAO/eventoDAO.php";
 require_once $dir . "/blogdw1/blog/Model/post.php";
 require_once $dir . "/blogdw1/blog/Model/usuario.php";
+require_once $dir . "/blogdw1/eventos/Model/evento.php";
 
 $action = $_GET["acao"];
 
@@ -36,6 +38,12 @@ if ($action == "post") {
     $idPost = $_GET["post"];
     deleteComentario($id);
     header("Location:../index.php?id=" . $idPost);
+
+} else if ($action == "evento") {
+    $id = $_GET["id"];
+    $idPost = $_GET["post"];
+    deleteEvento($id);
+    header("Location:admin.php");
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -69,6 +77,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $post->setAutor($_SESSION['UsuarioID']);
         insertPost($post);
         header("Location:admin.php?acao=posts");
+
+    } else if ($action == "criarEvento") {
+        $evento = new Evento();
+        $evento->setNome();
+        $evento->setDescricao();
+        $evento->setEndereco();
+        $evento->setData();
+        $evento->setLat();
+        $evento->setLng();
+        criarEvento($evento);
+        header("Location:admin.php?acao=evento");
+
     }
 }
 

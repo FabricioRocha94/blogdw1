@@ -28,23 +28,23 @@ require_once $dir . '/blogdw1/eventos/eventos.php';
   </head>
 
   <body class="mt-5">
+    <?php
+    if (isset($_GET['confirmar'])) {
+      confirmarPresenca($_GET['confirmar']);
+    }
+    if (isset($_GET['remover'])) {
+      removerPresenca($_GET['remover']);
+    }
+    ?>
+
     <div class="container-fluid">
     <div id="map"></div>
 
     <script>
-      var customLabel = {
-        restaurant: {
-          label: 'R'
-        },
-        bar: {
-          label: 'B'
-        }
-      };
-
         function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
           center: new google.maps.LatLng(-22.0185361, -47.9310767),
-          zoom: 12
+          zoom: 14
         });
         var infoWindow = new google.maps.InfoWindow;
 
