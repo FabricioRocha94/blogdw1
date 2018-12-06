@@ -61,7 +61,7 @@ $user = getUsuario($_GET["id"]);
 
     <button class="btn btn-primary" type="submit">Enviar</button>
     <a href="update.php?id=<?= $user->getId(), "&acao=user" ?>" class="btn btn-danger">Excluir</a>
-    <a href="admin.php" class="btn btn-primary">Voltar</a>
+    <a href="admin.php?acao=users" class="btn btn-primary">Voltar</a>
 </form>
 </div>
 

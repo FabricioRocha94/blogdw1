@@ -29,10 +29,10 @@
   <a href="admin.php" class="list-group-item list-group-item-action active">
     Painel admin
   </a>
-  <a href="admin.php?acao=posts" class="list-group-item list-group-item-action">Gerenciar Postagens</a>
-  <a href="admin.php?acao=users" class="list-group-item list-group-item-action">Gerenciar Usuarios</a>
-  <a href="admin.php?acao=eventos" class="list-group-item list-group-item-action">Gerenciar Eventos</a>
-  <a href="../index.php" class="list-group-item list-group-item-action">Voltar</a>
+  <a href="admin.php?acao=posts" class="list-group-item list-group-item-action btn-primary">Gerenciar Postagens</a>
+  <a href="admin.php?acao=users" class="list-group-item list-group-item-action btn-primary">Gerenciar Usuarios</a>
+  <a href="admin.php?acao=eventos" class="list-group-item list-group-item-action  btn-primary">Gerenciar Eventos</a>
+  <a href="../index.php" class="list-group-item list-group-item-action btn-danger">Voltar</a>
 </div>
 <br>
 <?php
@@ -100,10 +100,10 @@ if (isset($_GET["acao"])) {
             <div class="list-group">
               <a href="editEvento.php?id=<?= $linha['ID'] ?>" class="list-group-item list-group-item-action flex-column align-items-start active">
                 <div class="d-flex w-100 justify-content-between">
-                  <h5 class="mb-1"><?= $linha['NOME'] ?></h5>
+                  <h5 class="mb-1"><?= utf8_encode($linha['NOME']) ?></h5>
                   <small><?= "Data: ", $linha['DATA'] ?></small>
                 </div>
-                <small><?= "Descrição: ", $linha['DESCRICAO'] ?></small>
+                <small><?= "Descrição: ", utf8_decode($linha['DESCRICAO']) ?></small>
               </a>
               </a>
               <br>

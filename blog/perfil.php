@@ -2,9 +2,14 @@
         //HEADER
 $dir = $_SERVER['DOCUMENT_ROOT'];
 
+if (!isset($_SESSION))
+    session_start();
+
 require_once $dir . '/blogdw1/header.php';
 require_once $dir . '/blogdw1/blog/Model/usuario.php';
 require_once $dir . '/blogdw1/blog/DAO/usuarioDAO.php';
+require_once $dir . '/blogdw1/blog/DAO/comentarioDAO.php';
+require_once $dir . '/blogdw1/blog/DAO/postagemDAO.php';
 $user = new Usuario();
 $user = getUsuario($_SESSION['UsuarioID']);
 
@@ -63,29 +68,23 @@ $user = getUsuario($_SESSION['UsuarioID']);
         }
 
         $select = readComentsUserPage($pc, $user);
-        $count = (int)$select[0]->fetch(PDO::FETCH_ASSOC);
-        if ($count == 0) {
+        $count = $select[0]->rowCount();
+        if ($count > 0) {
             while ($linha = $select[0]->fetch(PDO::FETCH_ASSOC)) {
-
                 $post = new Post();
                 $post = getPost($linha['IDPOSTAGEM']);
-
                 ?>
-            <div><?= "Titulo da postagem: " . $post->getTitulo() ?></div>
-            <div class="card bg-dark border-light text-center ml-5 mt-3 mb-3">
-                <div class="card-header bg-light">
-                        <?php $autor = getUsuario($linha['AUTOR']); ?>
-                        <h4><?= "Autor: " . $autor->getNome() ?></h4>
+            <br>
+            <div class="card container-fluid">
+                <div class="card-header">
+                    <?php $autor = getUsuario($post->getAutor()); ?>
+                    <?= "<b>Autor do post: </b>" . $autor->getNome() ?>
                 </div>
-                <div class="card-body bg-light">
-                        <ul class="list-unstyled text-white text-muted">
-                            <?= $linha['TEXTO'] ?>
-                        </ul>
-                </div>
-                <div class="card-footer bg-light">
-                        <ul class="list-unstyled text-white text-muted">
-                            <b><?= "Postado em: ", $linha['DATA'] ?></b>
-                        </ul>
+                <div class="card-body">
+                    <b><h5 class="card-title">Titulo do post:</b> <?= $post->getTitulo() ?></h5>
+                    <b><p class="card-text">Seu comentario:</b> <?= $linha['TEXTO'] ?></p>
+                    <b><p class="card-text">Data do comentario:</b> <?= $linha['DATA'] ?></p>
+                    <a href="/blogdw1/blog/index.php?id=<?= $post->getId() ?>" class="btn btn-primary">Ver Postagem</a>
                 </div>
             </div>
                 <?php
@@ -94,19 +93,19 @@ $user = getUsuario($_SESSION['UsuarioID']);
 
             $anterior = $pc - 1;
             $proximo = $pc + 1;
-            echo "<div class='text-center'>";
-            if ($page > 1) {
+            echo "<br><div class='text-center'>";
+            if ($pc > 1) {
                 echo "<a href='perfil.php#comments?&page=" . $anterior . "' class='btn btn-primary m-2'><- Página Anterior</a>";
             }
 
-            echo "<button type='button' class='btn btn-danger'>" . $page . "</button>";
+            echo "<button type='button' class='btn btn-danger'>" . $pc . "</button>";
 
-            if ($page < $select[1]) {
+            if ($pc < $select[1]) {
                 echo "<a href='perfil.php#comments?page=" . $proximo . "' class='btn btn-primary m-2'>Próxima Página -></a>";
             }
             echo "</div>";
         } else {
-            echo "Você não comentou!";
+            echo "<h3 class='container-fluid m-5'>Você não comentou em nem uma postagem!</h3>";
         }
         ?>
   </div>

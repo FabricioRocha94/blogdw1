@@ -19,11 +19,11 @@ function listEventos($page)
         <br>
         <div class="card text-center">
             <div class="card-header">
-                <?= $linha['NOME'] ?>
+                <a href="index.php?id=<?= $linha['ID'] ?>"><h3><?= utf8_encode($linha['NOME']) ?></h3></a>
             </div>
             <div class="card-body">
-                <h5 class="card-title">Local: <?= $linha['ADDRESS'] ?></h5>
-                <p class="card-text"><?= $linha['DESCRICAO'] ?></p>
+                <h5 class="card-title"><?= utf8_encode($linha['DESCRICAO']) ?></h5>
+                <p class="card-text">Local: <?= utf8_encode($linha['ADDRESS']) ?></p>
                 <?php
                 if (isset($_SESSION['UsuarioID'])) {
                     if ($presenca->fetch(PDO::FETCH_ASSOC) == false) {
@@ -32,7 +32,7 @@ function listEventos($page)
                         echo "<a href='/blogdw1/eventos/index.php?remover=" . $linha['ID'] . "' class='btn btn-danger'>Remover Presença</a>";
                     }
                 } else {
-                    echo "<a href='#' class='btn disabled btn-primary'>Confirmar Presença</a>";
+                    echo "<a href='#' class='btn disabled btn-secondary'>Confirmar Presença</a>";
                 }
                 ?>
             </div>
@@ -59,33 +59,55 @@ function listEventos($page)
         echo "</div><br>";
     }
 
-    function popularMapa()
+    function mostrarEvento($id)
     {
+        $evento = new Evento();
+        $evento = getEvento($id);
 
-        $select = readLocalEventos();
-
-        while ($linha = $select->fetch(PDO::FETCH_ASSOC)) {
-            echo "var ponto = new google.maps.LatLng(" . $linha['LAT'] . "," . $linha['LNG'] . ");
-            var marker = new google.maps.Marker({
-                position: ponto,
-                map: map,//Objeto mapa
-                clicklable: true,
-                title:'" . $linha['NOME'] . "'
-        });";
-
+        if (isset($_SESSION['UsuarioID'])) {
+            $presenca = verificaPresenca($evento->getId());
         }
-    }
+        ?>
+        <br>
+        <div class="card text-center">
+            <div class="card-header">
+                <h3><?= utf8_encode($evento->getNome()) ?></h3>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><?= utf8_encode($evento->getDescricao()) ?></h5>
+                <p class="card-text">Local: <?= utf8_encode($evento->getEndereco()) ?></p>
+                <?php
+                if (isset($_SESSION['UsuarioID'])) {
+                    if ($presenca->fetch(PDO::FETCH_ASSOC) == false) {
+                        echo "<a href='/blogdw1/eventos/index.php?confirmar=" . $evento->getId() . "' class='btn btn-primary'>Confirmar Presença</a>";
+                    } else {
+                        echo "<a href='/blogdw1/eventos/index.php?remover=" . $evento->getId() . "' class='btn btn-danger'>Remover Presença</a>";
+                    }
+                } else {
+                    echo "<a href='#' class='btn disabled btn-secondary'>Confirmar Presença</a>";
+                }
+                echo "<br><a href='/blogdw1/eventos/index.php' class='btn btn-success m-3'>Voltar</a>";
+                ?>
+            </div>
+            <div class="card-footer text-muted">
+                Data: <?= $evento->getData() ?>
+            </div>
+        </div>
 
-    function confirmarPresenca($idEvento)
-    {
-        criarPresenca($idEvento);
-        header("Location:index.php");
-    }
+    <?php
 
-    function removerPresenca($idEvento)
-    {
-        deletarPresenca($idEvento);
-        header("Location:index.php");
-    }
+}
 
-    ?>
+function confirmarPresenca($idEvento)
+{
+    criarPresenca($idEvento);
+    header("Location:index.php");
+}
+
+function removerPresenca($idEvento)
+{
+    deletarPresenca($idEvento);
+    header("Location:index.php");
+}
+
+?>

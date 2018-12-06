@@ -26,12 +26,12 @@ $action = $_GET["acao"];
 if ($action == "post") {
     $id = $_GET["id"];
     deletePost($id);
-    header("Location:admin.php");
+    header("Location:admin.php?acao=posts");
 
 } else if ($action == "user") {
     $id = $_GET["id"];
     deleteUsuario($id);
-    header("Location:admin.php");
+    header("Location:admin.php?acao=users");
 
 } else if ($action == "comment") {
     $id = $_GET["id"];
@@ -43,7 +43,7 @@ if ($action == "post") {
     $id = $_GET["id"];
     $idPost = $_GET["post"];
     deleteEvento($id);
-    header("Location:admin.php");
+    header("Location:admin.php?acao=eventos");
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -70,6 +70,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         updateUsuario($user);
         header("Location:admin.php?acao=users");
 
+    } else if ($action == "updateEvento") {
+        $evento = new Evento();
+        $evento->setId($_POST["id"]);
+        $evento->setNome($_POST["nome"]);
+        $evento->setDescricao(utf8_decode($_POST["descricao"]));
+        $evento->setEndereco(utf8_decode($_POST["endereco"]));
+        $evento->setData(utf8_decode($_POST["data"]));
+        updateEvento($evento);
+        header("Location:admin.php?acao=eventos");
+
     } else if ($action == "criarPost") {
         $post = new Post();
         $post->setTitulo($_POST['titulo']);
@@ -80,14 +90,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     } else if ($action == "criarEvento") {
         $evento = new Evento();
-        $evento->setNome();
-        $evento->setDescricao();
-        $evento->setEndereco();
-        $evento->setData();
-        $evento->setLat();
-        $evento->setLng();
-        criarEvento($evento);
-        header("Location:admin.php?acao=evento");
+        $evento->setNome($_POST['nome']);
+        $evento->setDescricao(utf8_decode($_POST['descricao']));
+        $evento->setEndereco(utf8_decode($_POST['endereco']));
+        $evento->setData($_POST['data']);
+        insertEvento($evento);
+        header("Location:admin.php?acao=eventos");
 
     }
 }

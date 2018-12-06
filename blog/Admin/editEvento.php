@@ -8,7 +8,9 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
-    <title>Olá, mundo!</title>
+    <title>Painel Admin - Editar Evento</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
   </head>
   <body>
 <?php
@@ -22,11 +24,11 @@ $evento = getEvento($_GET["id"]);
 
 ?>
 <div class="container mt-5">
-<form method="post" action="update.php?acao=updatePost">
+<form method="post" action="update.php?acao=updateEvento">
   <div class="form-row">
     <div class="col-md-4 mb-3">
       <label for="validationDefault01">ID</label>
-      <input type="text" class="form-control" id="validationDefault01" name="id" readonly value="<?= $post->getId() ?>" required>
+      <input type="text" class="form-control" id="validationDefault01" name="id" readonly value="<?= $evento->getId() ?>" required>
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationDefault02">Nome</label>
@@ -34,34 +36,28 @@ $evento = getEvento($_GET["id"]);
     </div>
     <div class="col-md-4 mb-3">
       <label for="validationDefault03">Descrição</label>
-      <input type="text" class="form-control" readonly id="validationDefault03" placeholder="Descrição" name="descricao" value="<?= $evento->getDescricao() ?>" required>
+      <input type="text" class="form-control" id="validationDefault03" placeholder="Descrição" name="descricao" value="<?= utf8_encode($evento->getDescricao()) ?>" required>
     </div>
   </div>
   <div class="form-row">
     <div class="col-md-6 mb-3">
       <label for="validationDefault03">Endereço</label>
-      <input type="text" class="form-control" readonly id="validationDefault03" placeholder="Endereço" name="endereco" value="<?= $evento->getEndereco() ?>" required>
+      <input type="text" class="form-control" id="validationDefault03" placeholder="Endereço" name="endereco" value="<?= utf8_encode($evento->getEndereco()) ?>" required>
     </div>
     <div class="col-md-3 mb-3">
-      <label for="validationDefault05">Data</label>
-      <input type="text" class="form-control" id="validationDefault05" readonly placeholder="Data" name="data" value="<?= $evento->getData() ?>" required>
-    </div>
-  </div>
-    <div class="form-row">
-    <div class="col-md-6 mb-3">
-      <label for="validationDefault03">Latitude</label>
-      <input type="text" class="form-control" readonly id="validationDefault03" placeholder="Latitude" name="latitude" value="<?= $evento->getLat() ?>" required>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="validationDefault05">Longitude</label>
-      <input type="text" class="form-control" id="validationDefault05" readonly placeholder="Loingitude" name="longitude" value="<?= $evento->getLng() ?>" required>
+      <label for="validationDefault05">Data e Hora</label>
+      <input type="text" class="form-control" id="data" placeholder="YYYY-mm-DD HH:MM:SS" name="data" value="<?= utf8_encode($evento->getData()) ?>" required>
     </div>
   </div>
     <button class="btn btn-primary" type="submit">Enviar</button>
     <a href="update.php?id=<?= $evento->getId(), "&acao=evento" ?>" class="btn btn-danger">Excluir</a>
-    <a href="admin.php" class="btn btn-primary">Voltar</a>
+    <a href="admin.php?acao=eventos" class="btn btn-primary">Voltar</a>
 </form>
 </div>
+ 
+ <script type="text/javascript">
+    $("#data").mask("0000-00-00 00:00:00");
+ </script>
 
     <!-- JavaScript (Opcional) -->
     <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->

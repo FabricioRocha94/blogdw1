@@ -52,32 +52,12 @@ class Evento
 
     public function getEndereco()
     {
-        return $this->$endereco;
+        return $this->endereco;
     }
 
     public function setEndereco($endereco)
     {
         $this->endereco = $endereco;
-    }
-
-    public function getLat()
-    {
-        return $this->$lat;
-    }
-
-    public function setLat($lat)
-    {
-        $this->lat = $lat;
-    }
-
-    public function getLng()
-    {
-        return $this->$lng;
-    }
-
-    public function setLng($lng)
-    {
-        $this->lng = $lng;
     }
 }
 ?>

@@ -7,7 +7,7 @@ function insertEvento($evento)
 {
     $pdo = conectar();
   // Prepared Statement para evitar SQL injection
-    $stmt = $pdo->prepare('INSERT INTO EVENTO(NOME, DESCRICAO, ADDRESS, DATA, LAT, LNG) VALUES (:nome, :descricao, :endereco, :data, :lat, :lng);');
+    $stmt = $pdo->prepare('INSERT INTO EVENTO(NOME, DESCRICAO, ADDRESS, DATA) VALUES (:nome, :descricao, :endereco, :data);');
 
   // Substitui os valores no SQL e já executa
     $stmt->execute(array(
@@ -15,8 +15,6 @@ function insertEvento($evento)
         ':descricao' => $evento->getDescricao(),
         ':endereco' => $evento->getEndereco(),
         ':data' => $evento->getData(),
-        ':lat' => $evento->getLat(),
-        ':lng' => $evento->getLng()
     ));
 }
 
@@ -24,7 +22,7 @@ function updateEvento($evento)
 {
     $pdo = conectar();
   // Prepared Statement para evitar SQL injection
-    $stmt = $pdo->prepare('UPDATE EVENTO SET NOME = :nome, DESCRICAO = :descricao, ADDRESS = :endereco, DATA = :data, LAT = :lat, LNG = :lng WHERE ID = :id;');
+    $stmt = $pdo->prepare('UPDATE EVENTO SET NOME = :nome, DESCRICAO = :descricao, ADDRESS = :endereco, DATA = :data WHERE ID = :id;');
 
   // Substitui os valores no SQL e já executa
     $stmt->execute(array(
@@ -32,8 +30,6 @@ function updateEvento($evento)
         ':descricao' => $evento->getDescricao(),
         ':endereco' => $evento->getEndereco(),
         ':data' => $evento->getData(),
-        ':lat' => $evento->getLat(),
-        ':lng' => $evento->getLng(),
         ':id' => $evento->getId()
     ));
 }
@@ -75,7 +71,7 @@ function readEventos()
 {
     $pdo = conectar();
 
-    $stmt = $pdo->query('SELECT * FROM EVENTO WHERE DELETADO = FALSE ORDER BY DATA DESC;');
+    $stmt = $pdo->query('SELECT * FROM EVENTO WHERE DELETADO = FALSE ORDER BY ID DESC;');
 
     return $stmt;
 }
@@ -94,19 +90,8 @@ function getEvento($id)
     $evento->setDescricao($select['DESCRICAO']);
     $evento->setData($select['DATA']);
     $evento->setEndereco($select['ADDRESS']);
-    $evento->setLat($select['LAT']);
-    $evento->setLng($select['LNG']);
 
     return $evento;
-}
-
-function readLocalEventos()
-{
-    $pdo = conectar();
-
-    $stmt = $pdo->query('SELECT * FROM EVENTO WHERE DELETADO = FALSE ORDER BY DATA DESC;');
-
-    return $stmt;
 }
 
 function verificaPresenca($idEvento)

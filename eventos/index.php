@@ -6,16 +6,20 @@ require_once $dir . '/blogdw1/eventos/eventos.php';
 ?>   
 
   <head>
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-core.js"
+        type="text/javascript" charset="utf-8"></script>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-service.js"
+        type="text/javascript" charset="utf-8"></script>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-ui.js" 
+        type="text/javascript" charset="utf-8"></script>
+    <script src="http://js.api.here.com/v3/3.0/mapsjs-mapevents.js" 
+        type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" 
+          href="http://js.api.here.com/v3/3.0/mapsjs-ui.css" />
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
-    <title>Using MySQL and PHP with Google Maps</title>
+    <title>Eventos</title>
     <style>
-      /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-      #map {
-        height: 70%;
-      }
-      /* Optional: Makes the sample page fill the window. */
       html, body {
         height: 100%;
         margin: 0;
@@ -35,49 +39,9 @@ require_once $dir . '/blogdw1/eventos/eventos.php';
     if (isset($_GET['remover'])) {
       removerPresenca($_GET['remover']);
     }
-    ?>
 
-    <div class="container-fluid">
-    <div id="map"></div>
-
-    <script>
-        function initMap() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: new google.maps.LatLng(-22.0185361, -47.9310767),
-          zoom: 14
-        });
-        var infoWindow = new google.maps.InfoWindow;
-
-          // Change this depending on the name of your PHP or XML file  
-          <?php 
-          popularMapa();
-          ?>
-        }
-
-      function downloadUrl(url, callback) {
-        var request = window.ActiveXObject ?
-            new ActiveXObject('Microsoft.XMLHTTP') :
-            new XMLHttpRequest;
-
-        request.onreadystatechange = function() {
-          if (request.readyState == 4) {
-            request.onreadystatechange = doNothing;
-            callback(request, request.status);
-          }
-        };
-
-        request.open('GET', url, true);
-        request.send(null);
-      }
-
-      function doNothing() {}
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCFb8CnrvzP5fUygHOdUkp1BZVhpotSB1E&callback=initMap">
-    </script>
-    </div>
-
-
+    if (!isset($_GET['id'])) {
+      ?>
     <div class="container">    
       <?php 
       $pc;
@@ -86,8 +50,84 @@ require_once $dir . '/blogdw1/eventos/eventos.php';
       } else {
         $pc = $_GET["page"];
       }
+      echo "<h1 class='container-fluid text-center mt-5 pt-5'>Eventos Agendados</h1>";
       listEventos($pc); ?>
     </div>
+<?php
+
+
+
+} else if (isset($_GET['id'])) {
+  $evento = new Evento();
+  $evento = getEvento($_GET['id']);
+  ?>
+          <div class="mt-5 pt-4">
+          <div style="width: 1200px; height: 480px" id="mapContainer" class="container-fluid"></div>
+          </div>
+          <script>
+
+        // Instantiate a map and platform object:
+        var platform = new H.service.Platform({
+          'app_id': 'HJKlrTPUGmkvNNnKFsxu',
+          'app_code': '90VsFtVlM_iubBy5Q_3hVw'
+        });
+        // Retrieve the target element for the map:
+        var targetElement = document.getElementById('mapContainer');
+
+        // Get default map types from the platform object:
+        var defaultLayers = platform.createDefaultLayers();
+  
+
+        // Instantiate the map:
+        var map = new H.Map(
+          document.getElementById('mapContainer'),
+          defaultLayers.normal.map,
+          {
+          zoom: 11.75,
+          center: { lat: -22.010522, lng: -47.890014 }
+          });
+
+            // Create the default UI:
+            var ui = H.ui.UI.createDefault(map, defaultLayers, 'pt-BR');
+            var behavior = new H.mapevents.Behavior(new H.mapevents.MapEvents(map));
+
+        // Create the parameters for the geocoding request:
+        var geocodingParams = {
+            searchText: '<?= utf8_encode($evento->getEndereco()) ?>'
+        };
+
+        // Define a callback function to process the geocoding response:
+        var onResult = function(result) {
+          var locations = result.Response.View[0].Result,
+            position,
+            marker;
+          // Add a marker for each location found
+          for (i = 0;  i < locations.length; i++) {
+          position = {
+            lat: locations[i].Location.DisplayPosition.Latitude,
+            lng: locations[i].Location.DisplayPosition.Longitude
+          };
+          marker = new H.map.Marker(position);
+          map.addObject(marker);
+          map.setCenter({lat:locations[i].Location.DisplayPosition.Latitude, lng:locations[i].Location.DisplayPosition.Longitude});
+          map.setZoom(15);
+          }
+        };
+
+        // Get an instance of the geocoding service:
+        var geocoder = platform.getGeocodingService();
+
+        // Call the geocode method with the geocoding parameters,
+        // the callback and an error callback function (called if a
+        // communication error occurs):
+        geocoder.geocode(geocodingParams, onResult, function(e) {
+          alert(e);
+        });
+          </script>
+        <?php
+        mostrarEvento($evento->getId());
+      }
+      ?>
 
     <div class="container-fluid bg-dark">
       <div class="container">

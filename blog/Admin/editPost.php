@@ -52,7 +52,7 @@ $autor = getUsuario($post->getAutor());
   </div>
     <button class="btn btn-primary" type="submit">Enviar</button>
     <a href="update.php?id=<?= $post->getId(), "&acao=post" ?>" class="btn btn-danger">Excluir</a>
-    <a href="admin.php" class="btn btn-primary">Voltar</a>
+    <a href="admin.php?acao=posts" class="btn btn-primary">Voltar</a>
 </form>
 </div>
 

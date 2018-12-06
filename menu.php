@@ -33,7 +33,7 @@
               <a class="nav-link" href="<? $dir ?>/blogdw1/conheca.php">Conheça Daciolo<span class="sr-only">(current)</span></a
               >
             </li>
-            <li class="nav-item"><a class="nav-link" href="#"></a></li>
+            <li class="nav-item"><a class="nav-link" href="<? $dir ?>/blogdw1/eventos/index.php">Eventos</a></li>
             <li class="nav-item  dropdown">
               <a
                 class="nav-link dropdown-toggle"

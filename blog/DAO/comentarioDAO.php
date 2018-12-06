@@ -103,7 +103,6 @@ function readPageComents($pc, $idPost)
 
 function readComentsUserPage($pc, $user)
 {
-    if (!isset($_SESSION)) session_start();
     $total_reg = "3";
 
     $inicio = $pc - 1;
