@@ -8,7 +8,7 @@ CREATE TABLE POSTAGEM (ID INT NOT NULL AUTO_INCREMENT,TITULO VARCHAR(64) NOT NUL
 
 CREATE TABLE COMENTARIO (ID INT NOT NULL AUTO_INCREMENT, AUTOR INT NOT NULL, TEXTO LONGTEXT NOT NULL, DATA DATETIME DEFAULT CURRENT_TIMESTAMP, IDPOSTAGEM INT NOT NULL, DELETADO BOOLEAN DEFAULT FALSE, PRIMARY KEY(ID), FOREIGN KEY (AUTOR) REFERENCES USUARIO(ID), FOREIGN KEY (IDPOSTAGEM) REFERENCES POSTAGEM(ID));
 
-CREATE TABLE EVENTO (ID INT NOT NULL AUTO_INCREMENT ,NOME VARCHAR(60) NOT NULL, DESCRICAO VARCHAR(200) NOT NULL, ADDRESS VARCHAR(200) NOT NULL, DATA DATETIME DEFAULT CURRENT_TIMESTAMP, LAT FLOAT(10, 6) NOT NULL ,LNG FLOAT(10, 6) NOT NULL, DELETADO BOOLEAN DEFAULT FALSE, PRIMARY KEY (ID));
+CREATE TABLE EVENTO (ID INT NOT NULL AUTO_INCREMENT ,NOME VARCHAR(60) NOT NULL, DESCRICAO VARCHAR(200) NOT NULL, ADDRESS VARCHAR(200) NOT NULL, DATA DATETIME DEFAULT CURRENT_TIMESTAMP, DELETADO BOOLEAN DEFAULT FALSE, PRIMARY KEY (ID));
 
 CREATE TABLE PRESENCAEVENTO (IDUSUARIO INT NOT NULL, IDEVENTO INT NOT NULL, PRIMARY KEY(IDEVENTO), FOREIGN KEY (IDUSUARIO) REFERENCES USUARIO(ID), FOREIGN KEY (IDEVENTO) REFERENCES EVENTO(ID));
  
@@ -16,7 +16,9 @@ INSERT INTO USUARIO (NOME, SOBRENOME, TELEFONE, LOGIN, SENHA, ADMIN) VALUES ('ER
 
 INSERT INTO USUARIO (NOME, SOBRENOME, TELEFONE, LOGIN, SENHA) VALUES ('ERINALDO', 'PEREIRA', '9999-9999', 'ERINALDO', 'PEREIRA');
 
-INSERT INTO EVENTO (NOME, DESCRICAO, ADDRESS, DATA, LAT, LNG) VALUES ('Visita ao IFSP', 'Visita para levar a palavra de Deus aos alunos do IFSP', 'Rodovia Washington Luís, km 235, S/N - Monjolinho, São Carlos - SP, 13565-905', '2018-12-10 21:00:00', -21.969326, -47.878167);
+INSERT INTO EVENTO (NOME, DESCRICAO, ADDRESS, DATA) VALUES ('Visita ao IFSP - São Carlos', 'Vamos levar a palavra de Deus aos alunos do IFSP, venha fazer parte dessa incrivel jornada!', 'Estrada Municipal Paulo Eduardo de A. Prado, São Carlos-SP, 13560-010, Brasil', '2018-12-10 21:00:00');
+
+INSERT INTO EVENTO (NOME, DESCRICAO, ADDRESS, DATA) VALUES ('Visita ao Monte', 'Vamos iniciar mais um ano com uma corrente de orações. Não fique de fora deste glorioso momento!', 'Estrada Sca-472, 2398, São Carlos-SP, 13560-010, Brasil', '2018-12-31 23:59:00');
 
 INSERT INTO POSTAGEM (TITULO, TEXTO, AUTOR) VALUES ('Neque porro quisquam est qui dolorem ipsum quia dolor sit amet', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed malesuada nisi et mattis eleifend. Nullam accumsan enim ac lorem posuere pellentesque. Quisque rhoncus magna vitae turpis vulputate tincidunt. Aliquam iaculis tincidunt nisl, id convallis purus. Suspendisse accumsan felis justo, eget imperdiet nulla commodo sed. Curabitur urna massa, consectetur vel nisl sed, porta laoreet magna. Donec diam justo, vulputate vel commodo eu, gravida id odio. Proin non lorem ullamcorper, facilisis mi et, porttitor dui. Morbi et mauris a mauris congue mattis. Nunc porttitor arcu odio, vel cursus elit placerat eget. Vivamus vel urna non quam pharetra pulvinar.
 
