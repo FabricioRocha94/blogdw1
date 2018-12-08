@@ -18,8 +18,8 @@ function cadastrar()
       <input type="text" class="form-control" id="validationDefault03" placeholder="Sobrenome" name="sobrenome" required>
     </div>
     <div class="col-md-4 mb-3">
-      <label for="validationDefault03">Telefone</label>
-      <input type="text" class="form-control" id="validationDefault03" placeholder="Telefone" name="telefone" required>
+      <label for="validationDefault04">Telefone</label>
+      <input type="text" class="form-control" id="validationDefault04" placeholder="Telefone" name="telefone" required>
     </div>
   </div>
   <div class="form-row">
@@ -28,8 +28,8 @@ function cadastrar()
       <input type="text" class="form-control" id="validationDefault05" placeholder="Login" name="login" required>
     </div>
     <div class="col-md-4 mb-3">
-      <label for="validationDefault05">Senha</label>
-      <input type="password" class="form-control" id="validationDefault05" placeholder="Senha" name="senha" required>
+      <label for="validationDefault06">Senha</label>
+      <input type="password" class="form-control" id="validationDefault06" placeholder="Senha" name="senha" required>
     </div>
   </div>
   <br>
