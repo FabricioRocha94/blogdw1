@@ -83,8 +83,8 @@ function posts($page)
 
          <?php
 
-        $select = readComentarios($page, $id);
-                
+        $select = readPageComents($page, $id);
+
         echo "<br><div class='card bg-light border-light text-center ml-5 mt-3 mb-3'>
                 <h3><b>Comentarios</b></h3></div>";
 
@@ -166,11 +166,12 @@ function posts($page)
 ?>
 
 <?php
-    function postsPesquisados($paginaAtual, $tituloPostagem){
- 
-$select = readPagePostsWanted($paginaAtual, $tituloPostagem);
- while ($linha = $select[0]->fetch(PDO::FETCH_ASSOC)) {
-     
+function postsPesquisados($paginaAtual, $tituloPostagem)
+{
+
+    $select = readPagePostsWanted($paginaAtual, $tituloPostagem);
+    while ($linha = $select[0]->fetch(PDO::FETCH_ASSOC)) {
+
         ?>
     <div>
             <div  class="post">
@@ -201,11 +202,11 @@ $select = readPagePostsWanted($paginaAtual, $tituloPostagem);
         }
 
         echo "<button type='button' class='btn btn-danger'>" . $paginaAtual . "</button>";
-        
+
         if ($paginaAtual < $select[1]) {
             echo "<a href='index.php?page=" . $proximo . "' class='btn btn-primary m-2'>Próxima Página -></a>";
         }
         echo "</div>";
-      
+
     }
- ?>       
+    ?>       

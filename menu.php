@@ -119,13 +119,8 @@
 
           } else
             if (isset($_SESSION['UsuarioID'])) {
-            ?>
-
-              <li class="nav-item "><a class="nav-link" href="<? $dir ?>/blogdw1/index.php?logout=true">Sair</a></li>
-
-              <?php
-              if ($_SESSION['UsuarioAdmin'] == 1) {
-                ?>
+            if ($_SESSION['UsuarioAdmin'] == 1) {
+              ?>
                 <li class="nav-item "><a class="nav-link" href="<? $dir ?>/blogdw1/blog/Admin/admin.php">Painel Admin</a></li>
               <?php
 
@@ -136,6 +131,7 @@
 
             }
             ?>
+              <li class="nav-item "><a class="nav-link" href="<? $dir ?>/blogdw1/index.php?logout=true">Sair</a></li>
             <?php
 
           }

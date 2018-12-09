@@ -14,51 +14,20 @@ $user = new Usuario();
 $user = getUsuario($_SESSION['UsuarioID']);
 
 ?>
-
+<nav>
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item">
-    <a class="nav-link active" id="perfil-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="perfil" aria-selected="true">Perfil</a>
+    <a class="nav-link active" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="true">Meus Comentarios</a>
   </li>
   <li class="nav-item">
-    <a class="nav-link" id="comments-tab" data-toggle="tab" href="#comments" role="tab" aria-controls="comments" aria-selected="false">Meus Comentarios</a>
+    <a class="nav-link" id="perfil-tab" data-toggle="tab" href="#perfil" role="tab" aria-controls="perfil" aria-selected="false">Perfil</a>
   </li>
 </ul>
+</nav>
 
 <div class="tab-content" id="myTabContent">
-  <div class="tab-pane fade show active" id="perfil" role="tabpanel" aria-labelledby="perfil-tab">
-      <form method="post" action="Admin/gerenciarUsuario.php?action=update" class="p-5">
-  <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label for="validationDefault02">Nome</label>
-      <input type="text" class="form-control" id="validationDefault02" placeholder="Nome" name="nome" value="<?= $user->getNome() ?>" required>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="validationDefault03">Sobrenome</label>
-      <input type="text" class="form-control" id="validationDefault03" placeholder="Sobrenome" name="sobrenome" value="<?= $user->getSobrenome() ?>" required>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="validationDefault04">Telefone</label>
-      <input type="text" class="form-control" id="validationDefault04" placeholder="Telefone" name="telefone" value="<?= $user->getTelefone() ?>" required>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="col-md-4 mb-3">
-      <label for="validationDefault05">Login</label>
-      <input type="text" class="form-control" readonly id="validationDefault05" placeholder="Login" name="login" value="<?= $user->getLogin() ?>" required>
-    </div>
-    <div class="col-md-4 mb-3">
-      <label for="validationDefault06">Senha</label>
-      <input type="password" class="form-control" id="validationDefault06" placeholder="Senha" name="senha" value="<?= $user->getSenha() ?>" required>
-    </div>
-  </div>
-  <br>
-    <button class="btn btn-primary" type="submit">Salvar</button>
-</form>
-  </div>
 
-
-  <div class="tab-pane fade" id="comments" role="tabpanel" aria-labelledby="comments-tab">
-
+     <div class="tab-pane fade show active" id="comments" role="tabpanel" aria-labelledby="comments-tab">
         <?php
         $pc;
         if (!isset($_GET['page'])) {
@@ -95,19 +64,50 @@ $user = getUsuario($_SESSION['UsuarioID']);
             $proximo = $pc + 1;
             echo "<br><div class='text-center'>";
             if ($pc > 1) {
-                echo "<a href='perfil.php#comments?&page=" . $anterior . "' class='btn btn-primary m-2'><- Página Anterior</a>";
+                echo "<a href='perfil.php?page=" . $anterior . "' class='btn btn-primary m-2'><- Página Anterior</a>";
             }
 
             echo "<button type='button' class='btn btn-danger'>" . $pc . "</button>";
 
             if ($pc < $select[1]) {
-                echo "<a href='perfil.php#comments?page=" . $proximo . "' class='btn btn-primary m-2'>Próxima Página -></a>";
+                echo "<a href='perfil.php?page=" . $proximo . "' class='btn btn-primary m-2'>Próxima Página -></a>";
             }
             echo "</div>";
         } else {
             echo "<h3 class='container-fluid m-5'>Você não comentou em nem uma postagem!</h3>";
         }
         ?>
+  </div>
+
+  <div class="tab-pane fade" id="perfil" role="tabpanel" aria-labelledby="perfil-tab">
+      <form method="post" action="Admin/gerenciarUsuario.php?action=update" class="p-5">
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationDefault02">Nome</label>
+      <input type="text" class="form-control" id="validationDefault02" placeholder="Nome" name="nome" value="<?= $user->getNome() ?>" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationDefault03">Sobrenome</label>
+      <input type="text" class="form-control" id="validationDefault03" placeholder="Sobrenome" name="sobrenome" value="<?= $user->getSobrenome() ?>" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationDefault04">Telefone</label>
+      <input type="text" class="form-control" id="validationDefault04" placeholder="Telefone" name="telefone" value="<?= $user->getTelefone() ?>" required>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="col-md-4 mb-3">
+      <label for="validationDefault05">Login</label>
+      <input type="text" class="form-control" readonly id="validationDefault05" placeholder="Login" name="login" value="<?= $user->getLogin() ?>" required>
+    </div>
+    <div class="col-md-4 mb-3">
+      <label for="validationDefault06">Senha</label>
+      <input type="password" class="form-control" id="validationDefault06" placeholder="Senha" name="senha" value="<?= $user->getSenha() ?>" required>
+    </div>
+  </div>
+  <br>
+    <button class="btn btn-primary" type="submit">Salvar</button>
+</form>
   </div>
 </div>
 

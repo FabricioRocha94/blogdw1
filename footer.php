@@ -14,7 +14,7 @@ $dir = $_SERVER['DOCUMENT_ROOT'];
             <img src="<? $dir ?>/blogdw1/blog/public/images/monte.jpg" alt="anuncio" class="anuncio__image">
             <h3 class="anuncio__title">O monte</h3>
             <p class="anuncio__text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam doloremque amet blanditiis, fugit itaque fugiat veniam, aliquam adipisci harum, impedit eligendi corporis architecto voluptate quisquam doloribus! Necessitatibus accusantium cupiditate et!</p>
-            <a href="#" class="button button--gold mt-3">QUERO VISITAR</a>
+            <a href="../eventos/index.php?id=2" class="button button--gold mt-3">QUERO VISITAR</a>
           </div>
         </div>
       </div>
