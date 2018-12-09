@@ -122,6 +122,7 @@
             if ($_SESSION['UsuarioAdmin'] == 1) {
               ?>
                 <li class="nav-item "><a class="nav-link" href="<? $dir ?>/blogdw1/blog/Admin/admin.php">Painel Admin</a></li>
+                <li class="nav-item "><a class="nav-link" href="<? $dir ?>/blogdw1/blog/perfil.php">Perfil</a></li>
               <?php
 
             } else {
