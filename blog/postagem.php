@@ -81,10 +81,10 @@ function posts($page)
         </div>
     </div>
 
-        <?php
+         <?php
 
-        $select = readPageComents($page, $id);
-
+        $select = readComentarios($page, $id);
+                
         echo "<br><div class='card bg-light border-light text-center ml-5 mt-3 mb-3'>
                 <h3><b>Comentarios</b></h3></div>";
 
@@ -111,7 +111,7 @@ function posts($page)
                         <a href="Admin/update.php?id=<?= $linha['ID'], "&acao=comment&post=", $linha['IDPOSTAGEM'] ?>" class="btn btn-danger">Excluir</a>
                     <?php 
                 }
-            } ?>
+            } ?> 
 
             </div>
         </div>
@@ -164,3 +164,48 @@ function posts($page)
 <?php 
 }
 ?>
+
+<?php
+    function postsPesquisados($paginaAtual, $tituloPostagem){
+ 
+$select = readPagePostsWanted($paginaAtual, $tituloPostagem);
+ while ($linha = $select[0]->fetch(PDO::FETCH_ASSOC)) {
+     
+        ?>
+    <div>
+            <div  class="post">
+                <div class="post__content">
+                    <h3 class="post__title"><a href="pesquisa.php?id=<?php echo $linha['ID'] ?>&page=<?php echo $paginaAtual ?>"><?= $linha['TITULO'] ?></h3></a>
+        
+                    <p class="post__text"><?= $linha['TEXTO'] ?></p>
+                    
+                <div>
+                        <ul>
+                            <?php $autor = getUsuario($linha['AUTOR']); ?>
+                            <b><?= "Autor: ", $autor->getNome(), " - Postado em: ", $linha['DATA'] ?></b>
+                        </ul>
+                </div>
+                </div>
+                 
+            </div>
+    </div>  
+            <?php
+
+        }
+
+        $anterior = $paginaAtual - 1;
+        $proximo = $paginaAtual + 1;
+        echo "<div class='text-center'>";
+        if ($paginaAtual > 1) {
+            echo "<a href='index.php?page=" . $anterior . "' class='btn btn-primary m-2'><- Página Anterior</a>";
+        }
+
+        echo "<button type='button' class='btn btn-danger'>" . $paginaAtual . "</button>";
+        
+        if ($paginaAtual < $select[1]) {
+            echo "<a href='index.php?page=" . $proximo . "' class='btn btn-primary m-2'>Próxima Página -></a>";
+        }
+        echo "</div>";
+      
+    }
+ ?>       

@@ -62,11 +62,22 @@ function deleteComentario($id)
     ));
 }
 
-function readComentarios($id)
+function readComentarios($pc, $id)
 {
-    $pdo = conectar();
+    $total_reg = "3";
 
-    $stmt = $pdo->query('SELECT * FROM COMENTARIO WHERE IDPOSTAGEM =' . $id . " AND DELETADO = FALSE;");
+    $inicio = $pc - 1;
+
+    $inicio = $inicio * $total_reg;
+    $pdo = conectar();
+    
+    $stmt = $pdo->query('SELECT * FROM COMENTARIO WHERE IDPOSTAGEM =' . $id . " AND DELETADO = FALSE  ORDER BY DATA DESC LIMIT " . $inicio . ', ' . $total_reg . ';');
+    
+    $tr = $stmt->rowCount(); // verifica o número total de registros
+
+    $tp = $tr / $total_reg; // verifica o número total de páginas
+
+    return $array = array($stmt, $tp);
 
     return $stmt;
 }

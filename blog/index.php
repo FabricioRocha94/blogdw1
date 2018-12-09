@@ -10,23 +10,23 @@
 
           if (isset($_GET["id"])) {
             if (!isset($_GET['page'])) {
-              $pc = "1";
+              $pc = "1";              
             } else {
-              $pc = $_GET["page"];
+              $pc = $_GET["page"];              
             }
 
             comentarios($_GET["id"], $pc);
           } else
             if (isset($_GET["cadastrar"])) {
-            cadastrar();
+            cadastrar();            
           } else
             if (isset($_GET["comment"])) {
-            comentar($_GET["comment"]);
+            comentar($_GET["comment"]);            
           } else {
             if (!isset($_GET['page'])) {
-              $pc = "1";
+              $pc = "1";              
             } else {
-              $pc = $_GET["page"];
+              $pc = $_GET["page"];              
             }
 
             posts($pc);

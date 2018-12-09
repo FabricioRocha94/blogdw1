@@ -81,6 +81,22 @@ function readPagePosts($pc)
   return $array = array($stmt, $tp);
 }
 
+function readPagePostsWanted($pc, $title)
+{
+  $total_reg = "3";
+
+  $inicio = $pc - 1;
+
+  $inicio = $inicio * $total_reg;
+  
+  $pdo = conectar();  
+  $stmt = $pdo->query("SELECT * FROM POSTAGEM WHERE UPPER(TITULO) LIKE '%"  . strtoupper($title)  . "%' AND DELETADO = FALSE ORDER BY DATA DESC LIMIT " . $inicio . ', ' . $total_reg . ';');
+   
+  $tp = $stmt->rowCount() / $total_reg; // verifica o número total de páginas
+
+  return $array = array($stmt, $tp);
+}
+
 function deletePost($post)
 {
   $pdo = conectar();

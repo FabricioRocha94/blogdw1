@@ -142,15 +142,17 @@
           ?>
 
           </ul>
-          <form class="form-inline my-2 my-lg-0">
+          <form class="form-inline my-2 my-lg-0" method="post" action="<? $dir ?>/blogdw1/blog/pesquisa.php">
             <input
               class="form-control mr-sm-2"
               type="search"
+              id="tituloDaPostagem"
+              name="tituloDaPostagem"
               placeholder="Busque a Deus"
               aria-label="Search"
             />
             <button class="btn btn-outline-info my-2 my-sm-0" type="submit">
-              Procurar versículo
+            Procurar versículo              
             </button>
           </form>
         </div>
