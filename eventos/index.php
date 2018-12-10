@@ -17,18 +17,9 @@ require_once $dir . '/blogdw1/eventos/eventos.php';
         type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" 
           href="http://js.api.here.com/v3/3.0/mapsjs-ui.css" />
+          <link rel="stylesheet" href="../blog/public/styles/css/style.css">
     <meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
     <title>Eventos</title>
-    <style>
-      html, body {
-        height: 100%;
-        margin: 0;
-        padding: 0;
-      }
-    </style>
-
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-
   </head>
 
   <body class="mt-5">
@@ -61,9 +52,7 @@ require_once $dir . '/blogdw1/eventos/eventos.php';
   $evento = new Evento();
   $evento = getEvento($_GET['id']);
   ?>
-          <div class="mt-5 pt-4">
           <div style="width: 1200px; height: 480px" id="mapContainer" class="container-fluid"></div>
-          </div>
           <script>
 
         // Instantiate a map and platform object:

@@ -30,6 +30,79 @@ body {
   .button--gold {
     background-color: #b59757; }
 
+.botao, .botao:link, .botao:visited {
+  text-transform: uppercase;
+  text-decoration: none;
+  padding: 0.8rem 2rem;
+  display: inline-block;
+  border-radius: 3rem;
+  transition: all 0.2s;
+  position: relative;
+  margin-top: -20px;
+  margin-bottom: 10px;
+  font-size: 15px;
+  border: none;
+  cursor: pointer; }
+
+.botao:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.2); }
+  .botao:hover::after {
+    transform: scaleX(1.4) scaleY(1.6);
+    opacity: 0; }
+
+.botao:active, .botao:focus {
+  outline: none;
+  transform: translateY(-1px);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.2); }
+
+.botao--white {
+  background-color: #fff;
+  color: #777; }
+  .botao--white::after {
+    background-color: #fff; }
+
+.botao--green {
+  background-color: #55c57a;
+  color: #fff; }
+  .botao--green::after {
+    background-color: #55c57a; }
+
+.botao::after {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 3rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.4s; }
+
+.botao--animated {
+  animation: moveInBottom 0.5s ease-out 0.75s;
+  animation-fill-mode: backwards; }
+
+.botao-text:link, .botao-text:visited {
+  font-size: 15;
+  color: #55c57a;
+  display: inline-block;
+  text-decoration: none;
+  border-bottom: 1px solid #55c57a;
+  padding: 3px;
+  transition: all 0.2s; }
+
+.botao-text:hover {
+  background-color: #55c57a;
+  color: #fff;
+  box-shadow: 0 1rem 2rem rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px); }
+
+.botao-text:active {
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+  transform: translateY(0); }
+
 .post {
   background-color: rgba(196, 185, 152, 0.3);
   transform: skewY(-4deg); }
@@ -57,6 +130,130 @@ body {
     .post__text--single {
       font-size: 1.6rem;
       line-height: 150%; }
+
+.cartao {
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+  height: 31.2rem;
+  max-width: 30rem; }
+  .cartao__side {
+    height: 31.2rem;
+    transition: all 0.8s ease;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 3px;
+    overflow: hidden;
+    box-shadow: 0 1.5rem 2.2rem rgba(0, 0, 0, 0.15); }
+    .cartao__side--front {
+      background-color: #fff; }
+    .cartao__side--back {
+      transform: rotateY(180deg); }
+      .cartao__side--back-1 {
+        background-image: linear-gradient(to right bottom, #ffb900, #ff7730); }
+      .cartao__side--back-2 {
+        background-image: linear-gradient(to right bottom, #7ed56f, #28b485); }
+      .cartao__side--back-3 {
+        background-image: linear-gradient(to right bottom, #2998ff, #5643fa); }
+  .cartao:hover .cartao__side--front {
+    transform: rotateY(-180deg); }
+  .cartao:hover .cartao__side--back {
+    transform: rotateY(0); }
+  .cartao__picture {
+    background-size: cover;
+    height: 13.8rem;
+    background-blend-mode: screen;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px; }
+    .cartao__picture--1 {
+      background-image: linear-gradient(to right bottom, #ffb900, #ff7730), url(../../images/event.jpg); }
+    .cartao__picture--2 {
+      background-image: linear-gradient(to right bottom, #7ed56f, #28b485), url(../../images/event.jpg); }
+    .cartao__picture--3 {
+      background-image: linear-gradient(to right bottom, #2998ff, #5643fa), url(../../images/event.jpg); }
+  .cartao__heading {
+    font-size: 1.68rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: right;
+    color: #fff;
+    position: absolute;
+    top: 5.2rem;
+    right: 1.6rem;
+    width: 75%;
+    line-height: 2.6rem; }
+  .cartao__heading-span {
+    padding: 1rem 1.5rem;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone; }
+    .cartao__heading-span--1 {
+      background-image: linear-gradient(to right bottom, rgba(255, 185, 0, 0.85), rgba(255, 119, 48, 0.85)); }
+    .cartao__heading-span--2 {
+      background-image: linear-gradient(to right bottom, rgba(126, 213, 111, 0.85), rgba(40, 180, 133, 0.85)); }
+    .cartao__heading-span--3 {
+      background-image: linear-gradient(to right bottom, rgba(41, 152, 255, 0.85), rgba(86, 67, 250, 0.85)); }
+  .cartao__details {
+    padding: 1rem; }
+    .cartao__details ul {
+      list-style: none;
+      margin: 0 auto; }
+      .cartao__details ul li {
+        text-align: center;
+        font-size: 1rem;
+        padding: 0.8rem; }
+        .cartao__details ul li:not(:last-child) {
+          border-bottom: 1px solid #eee; }
+  .cartao__cta {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    text-align: center; }
+  .cartao__price-box {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 8rem; }
+  .cartao__price-only {
+    font-size: 1.4rem;
+    text-transform: uppercase; }
+  .cartao__price-value {
+    font-size: 6rem;
+    font-weight: 100; }
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    .cartao {
+      height: auto;
+      border-radius: 3px;
+      background-color: #fff;
+      box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.15); }
+      .cartao__side {
+        height: auto;
+        position: relative;
+        box-shadow: none; }
+        .cartao__side--back {
+          transform: rotateY(0);
+          clip-path: polygon(0 15%, 100% 0, 100% 100%, 0% 100%); }
+      .cartao:hover .cartao__side--front {
+        transform: rotateY(0); }
+      .cartao__details {
+        padding: 1rem 3rem; }
+      .cartao__cta {
+        position: relative;
+        top: 0%;
+        left: 0;
+        transform: translate(0);
+        width: 100%;
+        padding: 7rem 4rem 4rem 4rem; }
+      .cartao__price-box {
+        margin-bottom: 3rem; }
+      .cartao__price-value {
+        font-size: 4rem; } }
 
 .sidebar {
   z-index: 1;
