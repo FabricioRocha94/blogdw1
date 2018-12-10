@@ -129,4 +129,30 @@ function deletarPresenca($idEvento)
     ));
 }
 
+function getEventosCalendario()
+{
+    $pdo = conectar();
+
+    $stmt = $pdo->query('SELECT NOME, DATA, ID FROM EVENTO WHERE DELETADO = FALSE ORDER BY ID DESC;');
+
+    $array = "[";
+
+    while ($linha = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        $data = substr($linha['DATA'], 0, 10);
+        $array = $array . '{"title": "' . utf8_encode($linha['NOME']) . '", "url": "index.php?id=' . $linha['ID'] . '" , "start": "' . $data . '"},';
+    }
+    $array = substr($array, 0, -1);
+    $array = $array . "]";
+
+    //$array = json_encode($array);
+
+    $fp = fopen("json/events.json", "w");
+ 
+// Escreve o conteúdo JSON no arquivo
+    $escreve = fwrite($fp, $array);
+ 
+// Fecha o arquivo
+    fclose($fp);
+}
+
 ?>

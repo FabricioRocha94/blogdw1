@@ -3,6 +3,9 @@
 
 require_once $dir . '/blogdw1/menu.php';
 require_once $dir . '/blogdw1/eventos/eventos.php';
+
+ini_set('display_errors', 0);
+
 ?>   
 
   <head>
@@ -17,7 +20,7 @@ require_once $dir . '/blogdw1/eventos/eventos.php';
         type="text/javascript" charset="utf-8"></script>
     <link rel="stylesheet" type="text/css" 
           href="http://js.api.here.com/v3/3.0/mapsjs-ui.css" />
-          <link rel="stylesheet" href="../blog/public/styles/css/style.css">
+          <link rel="stylesheet" href="../blog/public/styles/css/style.css"/>
 
     <link href='./fullcalendar.min.css' rel='stylesheet' />
 <link href='./fullcalendar.print.min.css' rel='stylesheet' media='print' />
@@ -152,8 +155,8 @@ require_once $dir . '/blogdw1/eventos/eventos.php';
         <?php
         mostrarEvento($evento->getId());
       }
+      getEventosCalendario();
       ?>
-
     <div class="container-fluid bg-dark">
       <div class="container">
         <div class="row">
