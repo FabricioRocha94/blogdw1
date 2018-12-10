@@ -56,7 +56,7 @@ function readPageEventos($pc)
 
     $pdo = conectar();
 
-    $stmt = $pdo->query('SELECT * FROM EVENTO WHERE DELETADO = FALSE ORDER BY DATA DESC LIMIT ' . $inicio . ', ' . $total_reg . ';');
+    $stmt = $pdo->query('SELECT * FROM EVENTO WHERE DELETADO = FALSE ORDER BY DATA ASC LIMIT ' . $inicio . ', ' . $total_reg . ';');
 
     $todos = readEventos();
 
