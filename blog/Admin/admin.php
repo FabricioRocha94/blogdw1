@@ -64,9 +64,9 @@ if (isset($_GET["acao"])) {
           <?php $autor = getUsuario($linha['AUTOR']); ?>
           <small><?= "Autor: ", $autor->getNome() ?></small>
         </a>
-        </a>
         <br>
       </div>
+      <br>
             <?php
 
           }
@@ -83,9 +83,9 @@ if (isset($_GET["acao"])) {
                 </div>
                 <small><?= "Telefone: ", $linha['TELEFONE'] ?></small>
               </a>
-              </a>
               <br>
             </div>
+            <br>
             <?php
 
           }
@@ -105,9 +105,9 @@ if (isset($_GET["acao"])) {
                 </div>
                 <small><?= "Descrição: ", utf8_decode($linha['DESCRICAO']) ?></small>
               </a>
-              </a>
               <br>
             </div>
+            <br>
             <?php
 
           }
