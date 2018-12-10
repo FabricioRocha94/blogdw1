@@ -74,6 +74,17 @@ function listEventos($page)
             echo "<a href='index.php?page=" . $proximo . "' class='btn btn-primary m-2'>Próxima Página -></a>";
         }
         echo "</div><br>";
+
+        //teste calendario
+        ?>
+        <div id='script-warning'>
+            <code>php/get-events.php</code> must be running.
+        </div>
+
+        <div id='loading'>loading...</div>
+
+        <div id='calendar'></div>
+        <?php
     }
 
     function mostrarEvento($id)
